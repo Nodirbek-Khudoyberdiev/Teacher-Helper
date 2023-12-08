@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol LoginWorkerProtocol {
-    func loginUser(type: AuthType, userName: String, password: String) -> Single<BaseResponse<LoginResponse>>
+    func loginUser(type: AuthType, userName: String, password: String) -> Single<NetworkResult<LoginResponse>>
 }
 
 class LoginWorker: LoginWorkerProtocol {
@@ -19,10 +19,15 @@ class LoginWorker: LoginWorkerProtocol {
         self.authService = authService
     }
     
-    func loginUser(type: AuthType, userName: String, password: String) -> Single<BaseResponse<LoginResponse>> {
+    func loginUser(type: AuthType, userName: String, password: String) -> Single<NetworkResult<LoginResponse>> {
         return authService.login(userName: userName, password: password)
-            .do(onSuccess: { loginResponse in
-                KeychainStore.token = loginResponse.data?.token
+            .do(onSuccess: { result in
+                switch result {
+                case .success(let loginResponse):
+                    KeychainStore.token = loginResponse.data?.token
+                case .error:
+                    break
+                }
             })
     }
 }

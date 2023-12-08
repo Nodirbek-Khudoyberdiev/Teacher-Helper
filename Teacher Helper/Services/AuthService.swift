@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol AuthServiceProtocol {
-    func login(userName: String, password: String) -> Single<BaseResponse<LoginResponse>>
+    func login(userName: String, password: String) -> Single<NetworkResult<LoginResponse>>
 }
 
 class AuthService: AuthServiceProtocol {
@@ -19,7 +19,7 @@ class AuthService: AuthServiceProtocol {
         self.netowrking = netowrking
     }
     
-    func login(userName: String, password: String) -> Single<BaseResponse<LoginResponse>> {
+    func login(userName: String, password: String) -> Single<NetworkResult<LoginResponse>> {
         let authEndpoint = AuthEndpoint.login(username: userName, password: password)
         return netowrking.request(type: LoginResponse.self, endpoint: authEndpoint)
             .asSingle()

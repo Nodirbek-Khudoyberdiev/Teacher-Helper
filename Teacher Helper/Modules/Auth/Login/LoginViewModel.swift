@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxRelay
+import RxCocoa
 
 enum AuthType {
     case local
@@ -19,11 +20,11 @@ protocol LoginViewModelProtocol {
     var openRegister: PublishSubject<Void> { get }
     var username: BehaviorRelay<String?> { get }
     var password: BehaviorRelay<String?> { get }
-    func login(type: AuthType) -> Single<BaseResponse<LoginResponse>>
+    func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>>
 }
 
 extension LoginViewModelProtocol {
-    func login(type: AuthType = .local) -> Single<BaseResponse<LoginResponse>> {
+    func login(type: AuthType = .local) -> Driver<NetworkResult<LoginResponse>> {
         return login(type: type)
     }
 }
@@ -37,7 +38,7 @@ class LoginViewModel: LoginViewModelProtocol {
     var buttonEnabled: Observable<Bool> {
         return Observable.combineLatest(username, password){ username, password in
             if let username = username, let password = password {
-                return username.isValid(valueType: .email) && password.count >= 8
+                return username.isValid(valueType: .email) && (password.count >= 8)
             }
             return false
         }
@@ -49,8 +50,9 @@ class LoginViewModel: LoginViewModelProtocol {
         self.worker = worker
     }
     
-    func login(type: AuthType) -> Single<BaseResponse<LoginResponse>> {
+    func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>> {
         return worker.loginUser(type: type, userName: username.value!, password: password.value!)
+            .asDriver(onErrorJustReturn: .error(.init(status: nil, message: nil, code: nil)))
     }
 }
 

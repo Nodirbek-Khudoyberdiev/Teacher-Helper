@@ -39,9 +39,14 @@ class LoginVC: BaseViewController<LoginView> {
             .rx
             .controlEvent(.touchUpInside)
             .flatMap({ self.viewModel.login()})
-            .subscribe(onNext: { loginResponse in
-                if loginResponse.status == false {
-                    
+            .subscribe(onNext: { result in
+                switch result {
+                case .error(let baseError):
+                    if let message = baseError.message {
+                        TopAlertView.shared.showAlert(title: message)
+                    }
+                case .success:
+                    break
                 }
             })
             .disposed(by: bag)
