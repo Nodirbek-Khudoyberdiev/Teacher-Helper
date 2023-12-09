@@ -18,8 +18,8 @@
 		F71EE8372B1E65670034E10F /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71EE8362B1E65670034E10F /* AppError.swift */; };
 		F71EE8392B1E657B0034E10F /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71EE8382B1E657B0034E10F /* LoginResponse.swift */; };
 		F71EE83B2B1E6B910034E10F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71EE83A2B1E6B910034E10F /* BaseViewController.swift */; };
-		F72544C52B24FDD40004F056 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72544C42B24FDD40004F056 /* Strings.swift */; };
 		F72544C72B24FE640004F056 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72544C62B24FE640004F056 /* UIImage + Ext.swift */; };
+		F72544C92B25000F0004F056 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72544C82B25000F0004F056 /* Strings.swift */; };
 		F74A2C5B2B21A13700B231C0 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74A2C5A2B21A13700B231C0 /* PrimaryButton.swift */; };
 		F74A2C5D2B21A38100B231C0 /* NSMutableAttributedString + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74A2C5C2B21A38100B231C0 /* NSMutableAttributedString + Ext.swift */; };
 		F74E332E2B23643300F39BD2 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74E332D2B23643300F39BD2 /* DependencyContainer.swift */; };
@@ -91,8 +91,8 @@
 		F71EE8362B1E65670034E10F /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		F71EE8382B1E657B0034E10F /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		F71EE83A2B1E6B910034E10F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		F72544C42B24FDD40004F056 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F72544C62B24FE640004F056 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
+		F72544C82B25000F0004F056 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F74A2C5A2B21A13700B231C0 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		F74A2C5C2B21A38100B231C0 /* NSMutableAttributedString + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString + Ext.swift"; sourceTree = "<group>"; };
 		F74E332D2B23643300F39BD2 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
@@ -317,8 +317,8 @@
 		F7A7FA302B20ED5C003D6C53 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				F72544C42B24FDD40004F056 /* Strings.swift */,
 				F7A7FA352B20ED75003D6C53 /* Localizable.strings */,
+				F72544C82B25000F0004F056 /* Strings.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -574,9 +574,9 @@
 				F789A75F2B1C7370006FFAE4 /* LanguageChooseVC.swift in Sources */,
 				F7A7FA482B20FA07003D6C53 /* RegisterVC.swift in Sources */,
 				F7A7FA3C2B20F1B8003D6C53 /* AppCoordinator.swift in Sources */,
-				F72544C52B24FDD40004F056 /* Strings.swift in Sources */,
 				F75524F72B22492300D5D8A5 /* KeychainStore.swift in Sources */,
 				F7A7FA2D2B20E9DB003D6C53 /* String + Ext.swift in Sources */,
+				F72544C92B25000F0004F056 /* Strings.swift in Sources */,
 				F74E33352B2366B600F39BD2 /* WorkerFactory.swift in Sources */,
 				F789A75B2B1C7370006FFAE4 /* AppDelegate.swift in Sources */,
 				F7E4C64F2B1FC1EF004EB105 /* UIColor + Ext.swift in Sources */,
