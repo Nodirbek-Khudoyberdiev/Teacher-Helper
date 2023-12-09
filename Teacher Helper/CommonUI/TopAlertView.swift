@@ -9,6 +9,8 @@ import UIKit
 
 class TopAlertView: UIView {
 
+    private let animationDuration = 0.4
+    
     static let shared = TopAlertView()
     
     private var timer: Timer?
@@ -23,6 +25,7 @@ class TopAlertView: UIView {
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)
         super.init(frame: frame)
         setupUI()
+        addSwipeGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -41,27 +44,38 @@ class TopAlertView: UIView {
     
     func hideAlert(){
         let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: animationDuration) {
             self.frame = frame
             self.layoutIfNeeded()
         } completion: { _ in
             self.removeFromSuperview()
+            self.timer?.invalidate()
         }
     }
     
-    func showAlert(title: String){
+    func showAlert(title: String, showDuration: Double = 1.5){
         guard let window = UIApplication.shared.windows.filter ({$0.isKeyWindow}).first else { return }
         timer?.invalidate()
         window.addSubview(self)
         titleLabel.text = title
-        UIView.animate(withDuration: 0.5){
+        UIView.animate(withDuration: animationDuration){
             let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
             self.frame = frame
             self.layoutIfNeeded()
         }
-        timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { [weak self] timer in
+        timer = Timer.scheduledTimer(withTimeInterval: showDuration, repeats: false) { [weak self] timer in
             self?.hideAlert()
         }
+    }
+    
+    private func addSwipeGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture))
+        swipeGesture.direction = .up
+        self.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc private func handleSwipeGesture() {
+        hideAlert()
     }
     
 }

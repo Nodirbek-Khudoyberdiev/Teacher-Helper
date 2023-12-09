@@ -27,6 +27,7 @@ class LoginVC: BaseViewController<LoginView> {
         bindLoginButton()
         bindFields()
         bindButton()
+        bindButtonLoading()
     }
     
     override func loadView() {
@@ -41,12 +42,10 @@ class LoginVC: BaseViewController<LoginView> {
             .flatMap({ self.viewModel.login()})
             .subscribe(onNext: { result in
                 switch result {
-                case .error(let baseError):
-                    if let message = baseError.message {
-                        TopAlertView.shared.showAlert(title: message)
-                    }
+                case .error:
+                    TopAlertView.shared.showAlert(title: "Пароль или логин неверный")
                 case .success:
-                    break
+                    TopAlertView.shared.hideAlert()
                 }
             })
             .disposed(by: bag)
@@ -65,6 +64,14 @@ class LoginVC: BaseViewController<LoginView> {
             .text
             .orEmpty
             .bind(to: viewModel.password)
+            .disposed(by: bag)
+    }
+    
+    private func bindButtonLoading(){
+        viewModel.loading
+            .drive(onNext: {[weak self] loading in
+                self?.mainView().nextButton.startAnimating(loading)
+            })
             .disposed(by: bag)
     }
     

@@ -16,6 +16,7 @@ enum AuthType {
 }
 
 protocol LoginViewModelProtocol {
+    var loading: Driver<Bool> { get }
     var buttonEnabled: Observable<Bool> { get }
     var openRegister: PublishSubject<Void> { get }
     var username: BehaviorRelay<String?> { get }
@@ -30,10 +31,15 @@ extension LoginViewModelProtocol {
 }
 
 class LoginViewModel: LoginViewModelProtocol {
-    
+    lazy var loadingPublisher = PublishSubject<Bool>()
     lazy var username = BehaviorRelay<String?>(value: nil)
     lazy var password = BehaviorRelay<String?>(value: nil)
     lazy var openRegister = PublishSubject<Void>()
+    
+    var loading: Driver<Bool> {
+        return loadingPublisher
+            .asDriver(onErrorJustReturn: false)
+    }
     
     var buttonEnabled: Observable<Bool> {
         return Observable.combineLatest(username, password){ username, password in
@@ -51,8 +57,12 @@ class LoginViewModel: LoginViewModelProtocol {
     }
     
     func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>> {
+        loadingPublisher.onNext(type == .local)
         return worker.loginUser(type: type, userName: username.value!, password: password.value!)
-            .asDriver(onErrorJustReturn: .error(.init(status: nil, message: nil, code: nil)))
+            .asDriver(onErrorJustReturn: .error(globalDefaultError))
+            .do(onNext: {[weak self] _ in
+                self?.loadingPublisher.onNext(false)
+            })
     }
 }
 

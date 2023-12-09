@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import RxSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let bag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        checkInternet()
         return true
     }
 
@@ -33,4 +34,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension AppDelegate {
+    func checkInternet(){
+        NetworkChecker.shared.checkInternet
+            .distinctUntilChanged()
+            .drive(onNext: { internetConnected in
+                if let window = UIApplication.shared.windows.filter ({$0.isKeyWindow}).first {
+                    if window.subviews.contains(where: { $0 is TopAlertView }) {
+                        if internetConnected {
+                            TopAlertView.shared.hideAlert()
+                        }
+                    } else {
+                        if !internetConnected {
+                            TopAlertView.shared.showAlert(title: "Нету интернета!", showDuration: Double.infinity)
+                        }
+                    }
+                }
+            })
+            .disposed(by: bag)
+
+            
+        NetworkChecker.shared.monitorNetwork()
+    }
+}
+
+
 

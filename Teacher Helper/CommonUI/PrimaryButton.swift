@@ -7,7 +7,9 @@
 
 import UIKit
 
-class PrimaryButton: UIButton {
+class PrimaryButton: UIButton, ActivityIndicatorProtocol {
+    
+    lazy var activictyIndicator = ActivityIndicator()
     
     override var isEnabled: Bool {
         didSet {
@@ -21,10 +23,33 @@ class PrimaryButton: UIButton {
         titleLabel?.font = .inter(font: .semiBold, size: 16)
         backgroundColor = .Blue._400
         cornerRadius = 8
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    private func setupConstraints(){
+        addSubview(activictyIndicator)
+        snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
+        activictyIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+    
+    func startAnimating(_ value: Bool){
+        isEnabled = !value
+        if value {
+            activictyIndicator.startAnimating()
+            titleLabel?.alpha = 0
+        } else {
+            activictyIndicator.stopAnimating()
+            titleLabel?.alpha = 1
+        }
+    }
+    
     
 }
