@@ -15,8 +15,8 @@ enum TextFieldInputType {
 
 class TextField: UITextField {
     // for textField
-    private lazy var eye = UIImage(systemName: "eye")
-    private lazy var eyeSlash = UIImage(systemName: "eye.slash")
+    private lazy var eye: UIImage? = .eyeImage
+    private lazy var eyeSlash: UIImage? = .eyeSlashImage
     
     private lazy var secureButton: UIButton = {
         let button = UIButton()

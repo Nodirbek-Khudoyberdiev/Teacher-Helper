@@ -47,7 +47,7 @@ extension AppDelegate {
                         }
                     } else {
                         if !internetConnected {
-                            TopAlertView.shared.showAlert(title: "Нету интернета!", showDuration: Double.infinity)
+                            TopAlertView.shared.showAlert(title: .localized(.noInternetConnection), showDuration: Double.infinity)
                         }
                     }
                 }

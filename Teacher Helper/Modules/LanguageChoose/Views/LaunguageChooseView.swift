@@ -49,7 +49,7 @@ class LaunguageChooseView: BaseView {
             stackView.addArrangedSubview(languageView)
         }
         backgroundColor = .white
-        iconImageView.image = UIImage(named: "launchScreen")
+        iconImageView.image = .launchImage
         addSubviews(iconImageView, appTitle, stackView)
     }
     

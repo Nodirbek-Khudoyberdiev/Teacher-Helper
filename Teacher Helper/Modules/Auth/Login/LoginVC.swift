@@ -43,7 +43,7 @@ class LoginVC: BaseViewController<LoginView> {
             .subscribe(onNext: { result in
                 switch result {
                 case .error:
-                    TopAlertView.shared.showAlert(title: "Пароль или логин неверный")
+                    TopAlertView.shared.showAlert(title: .localized(.wrongPinOrUsername))
                 case .success:
                     TopAlertView.shared.hideAlert()
                 }

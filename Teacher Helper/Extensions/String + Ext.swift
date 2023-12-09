@@ -8,8 +8,8 @@
 import Foundation
 
 extension String {
-    var localized: String {
-        return Localization.getValue(self)
+    static func localized(_ strings: Strings) -> String {
+        return Localization.getValue(strings)
     }
 }
 

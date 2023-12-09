@@ -5,3 +5,5 @@
   Created by Nodirbek Khudoyberdiev on 06/12/23.
   
 */
+"no_internet_connection" = "Нету соеденения";
+"wrong_pin_or_username" = "Пароль или логин неверный";

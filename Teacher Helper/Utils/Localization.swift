@@ -13,16 +13,15 @@ enum Localization: String {
     case UZ = "uz"
     case UzCyrclic = "uz-Cyrl"
     
-    private static var language: String = UserDefaults.standard.getLocaleCode() //"en-US"
-    
     private static func getValue(_ key: String, comment: String?) -> String {
-        let path = Bundle.main.path(forResource: language, ofType: "lproj")
+        let localCode = UserDefaults.standard.getLocaleCode()
+        let path = Bundle.main.path(forResource: localCode, ofType: "lproj")
         let bundle = Bundle(path: path!)
         return bundle!.localizedString(forKey: key, value: comment, table: nil)
     }
     
-    static func getValue(_ key: String) -> String {
-        return self.getValue(key, comment: key)
+    static func getValue(_ key: Strings) -> String {
+        return self.getValue(key.rawValue, comment: key.rawValue)
     }
     
     var title: String {
