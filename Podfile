@@ -10,6 +10,7 @@ target 'Teacher Helper' do
   pod 'Wormholy', :configurations => ['Debug']
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxGesture'
   pod 'ReachabilitySwift'
   pod 'KeychainAccess'
   pod 'Alamofire'

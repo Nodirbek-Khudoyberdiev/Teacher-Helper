@@ -16,23 +16,23 @@ class RegisterCoordinator: ReactiveCoordinator<Void> {
     }
     
     override func start(_ di: DependencyContainerProtocol) -> Observable<Void> {
-        let viewController = RegisterVC()
-//        viewController
-//            .loginFinished
-//            .flatMap({ [unowned self] in
-//                
-//            })
-//            .subscribe()
-//            .disposed(by: disposeBag)
+        let viewController = di.registerVC()
+        
+        viewController.viewModel.openLogin
+            .subscribe(onNext: {[weak self] in
+                self?.openLogin()
+            })
+            .disposed(by: disposeBag)
         
         rootViewController.navigationController?
             .pushViewController(viewController, animated: true)
         return Observable.empty()
     }
     
-//    private func openRegister() -> Observable<Void> {
-//        let loginCoordinator = RegisterCoordinator(rootViewController: rootViewController)
-//        return coordinate(to: loginCoordinator)
-//    }
+    private func openLogin(){
+        rootViewController.navigationController?.popViewController(animated: true)
+    }
+    
+    
     
 }

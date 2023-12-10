@@ -7,3 +7,4 @@
 */
 "no_internet_connection" = "InternetAloqasiUzildi";
 "wrong_pin_or_username" = "Пароль или логин неверный";
+"register" = "Зарегистрироваться";

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol WorkerFactory {
-    func loginWorker() -> LoginWorkerProtocol
+    func authWorker() -> AuthWorkerProtocol
 }

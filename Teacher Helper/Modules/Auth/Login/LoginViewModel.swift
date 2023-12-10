@@ -9,18 +9,10 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-enum AuthType {
-    case local
-    case google
-    case facebook
-}
 
-protocol LoginViewModelProtocol {
-    var loading: Driver<Bool> { get }
-    var buttonEnabled: Observable<Bool> { get }
+
+protocol LoginViewModelProtocol: AuthViewModelProtocol {
     var openRegister: PublishSubject<Void> { get }
-    var username: BehaviorRelay<String?> { get }
-    var password: BehaviorRelay<String?> { get }
     func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>>
 }
 
@@ -50,9 +42,9 @@ class LoginViewModel: LoginViewModelProtocol {
         }
     }
     
-    let worker: LoginWorkerProtocol
+    let worker: AuthWorkerProtocol
     
-    init(worker: LoginWorkerProtocol) {
+    init(worker: AuthWorkerProtocol) {
         self.worker = worker
     }
     

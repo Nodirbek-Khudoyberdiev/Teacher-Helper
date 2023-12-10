@@ -9,4 +9,5 @@ import Foundation
 
 protocol ViewControllerFactory {
     func loginVC() -> LoginVC
+    func registerVC() -> RegisterVC
 }

@@ -1,5 +1,5 @@
 //
-//  LoginWorker.swift
+//  AuthWorker.swift
 //  Teacher Helper
 //
 //  Created by Nodirbek Khudoyberdiev on 07/12/23.
@@ -7,11 +7,12 @@
 
 import RxSwift
 
-protocol LoginWorkerProtocol {
+protocol AuthWorkerProtocol {
     func loginUser(type: AuthType, userName: String, password: String) -> Single<NetworkResult<LoginResponse>>
+    func registerUser(type: AuthType, userName: String, password: String) -> Single<NetworkResult<RegisterResponse>>
 }
 
-class LoginWorker: LoginWorkerProtocol {
+class AuthWorker: AuthWorkerProtocol {
     
     let authService: AuthServiceProtocol
     
@@ -29,5 +30,9 @@ class LoginWorker: LoginWorkerProtocol {
                     break
                 }
             })
+    }
+    
+    func registerUser(type: AuthType, userName: String, password: String) -> Single<NetworkResult<RegisterResponse>> {
+        return authService.register(userName: userName, password: password)
     }
 }
