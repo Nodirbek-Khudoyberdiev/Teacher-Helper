@@ -9,19 +9,26 @@ import RxSwift
 
 protocol AuthServiceProtocol {
     func login(userName: String, password: String) -> Single<NetworkResult<LoginResponse>>
+    func register(userName: String, password: String) -> Single<NetworkResult<RegisterResponse>>
 }
 
 class AuthService: AuthServiceProtocol {
     
-    private let netowrking: APIClientProtocol
+    private let networking: APIClientProtocol
     
-    init(netowrking: APIClientProtocol) {
-        self.netowrking = netowrking
+    init(networking: APIClientProtocol) {
+        self.networking = networking
     }
     
     func login(userName: String, password: String) -> Single<NetworkResult<LoginResponse>> {
         let authEndpoint = AuthEndpoint.login(username: userName, password: password)
-        return netowrking.request(type: LoginResponse.self, endpoint: authEndpoint)
+        return networking.request(type: LoginResponse.self, endpoint: authEndpoint)
+            .asSingle()
+    }
+    
+    func register(userName: String, password: String) -> Single<NetworkResult<RegisterResponse>> {
+        let authEndpoint = AuthEndpoint.register(firstName: "", lastName: "", userName: userName, password: password, region: 1, city: 187)
+        return networking.request(type: RegisterResponse.self, endpoint: authEndpoint)
             .asSingle()
     }
     

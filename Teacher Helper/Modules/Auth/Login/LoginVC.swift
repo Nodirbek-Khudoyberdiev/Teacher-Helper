@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class LoginVC: BaseViewController<LoginView> {
     
@@ -28,6 +29,7 @@ class LoginVC: BaseViewController<LoginView> {
         bindFields()
         bindButton()
         bindButtonLoading()
+        openRegister()
     }
     
     override func loadView() {
@@ -48,6 +50,16 @@ class LoginVC: BaseViewController<LoginView> {
                     TopAlertView.shared.hideAlert()
                 }
             })
+            .disposed(by: bag)
+    }
+    
+    private func openRegister(){
+        mainView().subtitleLabel
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .map( { _ in () } )
+            .bind(to: viewModel.openRegister)
             .disposed(by: bag)
     }
     

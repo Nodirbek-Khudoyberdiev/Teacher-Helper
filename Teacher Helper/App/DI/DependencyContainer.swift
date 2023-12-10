@@ -20,7 +20,7 @@ final class DependencyContainer: DependencyContainerProtocol {
     static let shared = DependencyContainer()
     
     lazy var networkClient: APIClientProtocol = APIClient()
-    lazy var authService: AuthServiceProtocol = AuthService(netowrking: networkClient)
+    lazy var authService: AuthServiceProtocol = AuthService(networking: networkClient)
 }
 
 // MARK: ViewController DI
@@ -32,15 +32,20 @@ extension DependencyContainer {
         return vc
     }
     
+    func registerVC() -> RegisterVC {
+        return RegisterVC(viewModel: registerViewModel())
+    }
+    
 }
 
 // MARK: Workers DI
 
 extension DependencyContainer {
     
-    func loginWorker() -> LoginWorkerProtocol {
-        return LoginWorker(authService: authService)
+    func authWorker() -> AuthWorkerProtocol {
+        return AuthWorker(authService: authService)
     }
+    
 }
 
 // MARK: ViewModels DI
@@ -48,7 +53,11 @@ extension DependencyContainer {
 extension DependencyContainer {
     
     func loginViewModel() -> LoginViewModelProtocol {
-        return LoginViewModel(worker: loginWorker())
+        return LoginViewModel(worker: authWorker())
+    }
+    
+    func registerViewModel() -> RegisterViewModelProtocol {
+        return RegisterViewModel(worker: authWorker())
     }
     
 }

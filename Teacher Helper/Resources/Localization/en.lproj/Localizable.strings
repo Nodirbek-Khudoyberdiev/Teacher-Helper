@@ -8,3 +8,4 @@
 
 "no_internet_connection" = "No internet connection";
 "wrong_pin_or_username" = "Пароль или логин неверный";
+"register" = "Зарегистрироваться";

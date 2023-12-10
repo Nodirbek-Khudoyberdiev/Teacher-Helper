@@ -1,0 +1,62 @@
+//
+//  RegisterViewModel.swift
+//  Teacher Helper
+//
+//  Created by Nodirbek Khudoyberdiev on 11/12/23.
+//
+
+import RxSwift
+import RxRelay
+import RxCocoa
+
+protocol RegisterViewModelProtocol: AuthViewModelProtocol {
+    var openLogin: PublishSubject<Void> { get }
+    func register(type: AuthType) -> Driver<NetworkResult<RegisterResponse>>
+}
+
+extension RegisterViewModelProtocol {
+    func register(type: AuthType = .local) -> Driver<NetworkResult<RegisterResponse>> {
+        return register(type: type)
+    }
+
+}
+
+final class RegisterViewModel: RegisterViewModelProtocol {
+    
+    lazy var loadingPublisher = PublishSubject<Bool>()
+    
+    var loading: Driver<Bool> {
+        return loadingPublisher
+            .asDriver(onErrorJustReturn: false)
+    }
+    
+    lazy var username = BehaviorRelay<String?>(value: nil)
+    lazy var password = BehaviorRelay<String?>(value: nil)
+    
+    lazy var openLogin = PublishSubject<Void>()
+    
+    var buttonEnabled: Observable<Bool> {
+        return Observable.combineLatest(username, password){ username, password in
+            if let username = username, let password = password {
+                return username.isValid(valueType: .email) && (password.count >= 8)
+            }
+            return false
+        }
+    }
+        
+    let worker: AuthWorkerProtocol
+    
+    init(worker: AuthWorkerProtocol) {
+        self.worker = worker
+    }
+    
+    func register(type: AuthType) -> Driver<NetworkResult<RegisterResponse>> {
+        loadingPublisher.onNext(true)
+        return worker.registerUser(type: type, userName: username.value!, password: password.value!)
+            .asDriver(onErrorJustReturn: .error(globalDefaultError))
+            .do(onNext: {[weak self] _ in
+                self?.loadingPublisher.onNext(false)
+            })
+    }
+    
+}

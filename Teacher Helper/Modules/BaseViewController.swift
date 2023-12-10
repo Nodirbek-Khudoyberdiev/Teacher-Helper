@@ -22,8 +22,4 @@ class BaseViewController<RootView: UIView>: UIViewController, ViewSpecificContro
         fatalError()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
 }
