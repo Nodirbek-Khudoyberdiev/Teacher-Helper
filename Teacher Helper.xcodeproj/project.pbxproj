@@ -62,6 +62,12 @@
 		F7A7FA582B2104C1003D6C53 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A7FA572B2104C1003D6C53 /* PaddingLabel.swift */; };
 		F7C061842B2444E100165406 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C061832B2444E100165406 /* ActivityIndicator.swift */; };
 		F7C061862B2447B700165406 /* NetworkChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C061852B2447B700165406 /* NetworkChecker.swift */; };
+		F7C6C6892B3727ED00D56800 /* OtpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C6C6882B3727ED00D56800 /* OtpVC.swift */; };
+		F7C6C68B2B3729F800D56800 /* OtpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C6C68A2B3729F800D56800 /* OtpView.swift */; };
+		F7C6C68D2B3732A600D56800 /* OtpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C6C68C2B3732A600D56800 /* OtpCoordinator.swift */; };
+		F7C6C68F2B37350C00D56800 /* OtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C6C68E2B37350C00D56800 /* OtpViewModel.swift */; };
+		F7C6C6912B373BC700D56800 /* OtpNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C6C6902B373BC700D56800 /* OtpNumberView.swift */; };
+		F7C6C6962B373DE600D56800 /* OtpContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C6C6952B373DE600D56800 /* OtpContainerView.swift */; };
 		F7E4C6332B1FBBE0004EB105 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E4C6322B1FBBE0004EB105 /* BaseProtocol.swift */; };
 		F7E4C6352B1FBC45004EB105 /* ViewSpecificController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E4C6342B1FBC45004EB105 /* ViewSpecificController.swift */; };
 		F7E4C6392B1FBD61004EB105 /* LaunguageChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E4C6382B1FBD61004EB105 /* LaunguageChooseView.swift */; };
@@ -144,6 +150,12 @@
 		F7A7FA572B2104C1003D6C53 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		F7C061832B2444E100165406 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		F7C061852B2447B700165406 /* NetworkChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChecker.swift; sourceTree = "<group>"; };
+		F7C6C6882B3727ED00D56800 /* OtpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpVC.swift; sourceTree = "<group>"; };
+		F7C6C68A2B3729F800D56800 /* OtpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpView.swift; sourceTree = "<group>"; };
+		F7C6C68C2B3732A600D56800 /* OtpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpCoordinator.swift; sourceTree = "<group>"; };
+		F7C6C68E2B37350C00D56800 /* OtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpViewModel.swift; sourceTree = "<group>"; };
+		F7C6C6902B373BC700D56800 /* OtpNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpNumberView.swift; sourceTree = "<group>"; };
+		F7C6C6952B373DE600D56800 /* OtpContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpContainerView.swift; sourceTree = "<group>"; };
 		F7E4C6322B1FBBE0004EB105 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		F7E4C6342B1FBC45004EB105 /* ViewSpecificController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSpecificController.swift; sourceTree = "<group>"; };
 		F7E4C6382B1FBD61004EB105 /* LaunguageChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunguageChooseView.swift; sourceTree = "<group>"; };
@@ -375,6 +387,7 @@
 				F76CD6172B26697600C7F6F6 /* Worker */,
 				F7A7FA3D2B20F3E2003D6C53 /* Login */,
 				F7A7FA492B20FA0B003D6C53 /* Register */,
+				F7C6C6872B3727D100D56800 /* Otp  */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -401,6 +414,27 @@
 				F7C061832B2444E100165406 /* ActivityIndicator.swift */,
 			);
 			path = CommonUI;
+			sourceTree = "<group>";
+		};
+		F7C6C6872B3727D100D56800 /* Otp  */ = {
+			isa = PBXGroup;
+			children = (
+				F7C6C6882B3727ED00D56800 /* OtpVC.swift */,
+				F7C6C68C2B3732A600D56800 /* OtpCoordinator.swift */,
+				F7C6C68E2B37350C00D56800 /* OtpViewModel.swift */,
+				F7C6C6942B373DD600D56800 /* Views */,
+			);
+			path = "Otp ";
+			sourceTree = "<group>";
+		};
+		F7C6C6942B373DD600D56800 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F7C6C68A2B3729F800D56800 /* OtpView.swift */,
+				F7C6C6902B373BC700D56800 /* OtpNumberView.swift */,
+				F7C6C6952B373DE600D56800 /* OtpContainerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F7E4C6312B1FBBD7004EB105 /* Utils */ = {
@@ -602,21 +636,27 @@
 				F789A75B2B1C7370006FFAE4 /* AppDelegate.swift in Sources */,
 				F7E4C64F2B1FC1EF004EB105 /* UIColor + Ext.swift in Sources */,
 				F74E33312B23667F00F39BD2 /* ViewControllerFactory.swift in Sources */,
+				F7C6C6892B3727ED00D56800 /* OtpVC.swift in Sources */,
 				F74E332E2B23643300F39BD2 /* DependencyContainer.swift in Sources */,
 				F71EE8372B1E65670034E10F /* AppError.swift in Sources */,
+				F7C6C68F2B37350C00D56800 /* OtpViewModel.swift in Sources */,
 				F71EE83B2B1E6B910034E10F /* BaseViewController.swift in Sources */,
+				F7C6C68D2B3732A600D56800 /* OtpCoordinator.swift in Sources */,
 				F74E33332B2366AA00F39BD2 /* ViewModelFactory.swift in Sources */,
 				F7A7FA452B20F4B7003D6C53 /* LoginView.swift in Sources */,
 				F71EE8332B1E62400034E10F /* Endpoint.swift in Sources */,
 				F7A7FA432B20F4A4003D6C53 /* LoginVC.swift in Sources */,
 				F7E4C6402B1FBF7C004EB105 /* Fonts.swift in Sources */,
 				F72544C72B24FE640004F056 /* UIImage + Ext.swift in Sources */,
+				F7C6C68B2B3729F800D56800 /* OtpView.swift in Sources */,
 				F7A7FA2F2B20E9FF003D6C53 /* UserDefaults + Ext.swift in Sources */,
 				F74A2C5B2B21A13700B231C0 /* PrimaryButton.swift in Sources */,
 				F7E4C63B2B1FBDEE004EB105 /* UIImageView + Ext.swift in Sources */,
 				F7A7FA3F2B20F3F4003D6C53 /* LoginCoordinator.swift in Sources */,
+				F7C6C6962B373DE600D56800 /* OtpContainerView.swift in Sources */,
 				F74A2C5D2B21A38100B231C0 /* NSMutableAttributedString + Ext.swift in Sources */,
 				F7A7FA3A2B20F122003D6C53 /* LanguageChooseCoordinator.swift in Sources */,
+				F7C6C6912B373BC700D56800 /* OtpNumberView.swift in Sources */,
 				F71EE8392B1E657B0034E10F /* LoginResponse.swift in Sources */,
 				F7E4C6352B1FBC45004EB105 /* ViewSpecificController.swift in Sources */,
 				F71EE82A2B1E55EB0034E10F /* DataManager.swift in Sources */,

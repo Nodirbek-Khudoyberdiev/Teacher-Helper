@@ -14,4 +14,9 @@ extension UITextField {
             attributes: [NSAttributedString.Key.foregroundColor: color]
         )
     }
+    
+    func builder(font: UIFont, textAlignment: NSTextAlignment){
+        self.font = font
+        self.textAlignment = textAlignment
+    }
 }

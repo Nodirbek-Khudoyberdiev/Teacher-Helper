@@ -11,6 +11,7 @@ import RxCocoa
 
 protocol RegisterViewModelProtocol: AuthViewModelProtocol {
     var openLogin: PublishSubject<Void> { get }
+    var openOtp: PublishSubject<String> { get }
     func register(type: AuthType) -> Driver<NetworkResult<RegisterResponse>>
 }
 
@@ -33,6 +34,7 @@ final class RegisterViewModel: RegisterViewModelProtocol {
     lazy var username = BehaviorRelay<String?>(value: nil)
     lazy var password = BehaviorRelay<String?>(value: nil)
     
+    lazy var openOtp = PublishSubject<String>()
     lazy var openLogin = PublishSubject<Void>()
     
     var buttonEnabled: Observable<Bool> {
@@ -55,7 +57,10 @@ final class RegisterViewModel: RegisterViewModelProtocol {
         return worker.registerUser(type: type, userName: username.value!, password: password.value!)
             .asDriver(onErrorJustReturn: .error(globalDefaultError))
             .do(onNext: {[weak self] _ in
-                self?.loadingPublisher.onNext(false)
+                guard let self else { return }
+                let userName = self.username.value ?? ""
+                self.openOtp.onNext(userName)
+                self.loadingPublisher.onNext(false)
             })
     }
     

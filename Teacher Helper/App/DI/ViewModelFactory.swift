@@ -10,4 +10,5 @@ import Foundation
 protocol ViewModelFactory {
     func loginViewModel() -> LoginViewModelProtocol
     func registerViewModel() -> RegisterViewModelProtocol
+    func otpViewModel(userName: String) -> OtpViewModelProtocol
 }

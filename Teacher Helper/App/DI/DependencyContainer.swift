@@ -35,6 +35,11 @@ extension DependencyContainer {
     func registerVC() -> RegisterVC {
         return RegisterVC(viewModel: registerViewModel())
     }
+ 
+    func otpVC(userName: String) -> OtpVC {
+        let viewModel = otpViewModel(userName: userName)
+        return OtpVC(viewModel: viewModel)
+    }
     
 }
 
@@ -58,6 +63,10 @@ extension DependencyContainer {
     
     func registerViewModel() -> RegisterViewModelProtocol {
         return RegisterViewModel(worker: authWorker())
+    }
+    
+    func otpViewModel(userName: String) -> OtpViewModelProtocol {
+        return OtpViewModel(userName: userName)
     }
     
 }

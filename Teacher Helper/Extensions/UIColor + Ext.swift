@@ -27,6 +27,7 @@ extension UIColor {
     }
     
     static let appPrimaryColor = UIColor(hex: "58D5D3")
+    static let appBlackColor = UIColor(hex: "101828")
     
     struct Blue {
         static let _400 = UIColor(hex: "40BFC1")
@@ -37,6 +38,8 @@ extension UIColor {
         static let _300 = UIColor(hex: "D0D5DD")
         static let _700 = UIColor(hex: "344054")
         static let _500 = UIColor(hex: "667085")
+        static let _200 = UIColor(hex: "EAECF0")
+        static let _600 = UIColor(hex: "475467")
     }
     
     

@@ -29,7 +29,7 @@ class LanguageChooseCoordinator: ReactiveCoordinator<Void> {
         return Observable.empty()
     }
     
-//    // MARK: - Coordination
+    // MARK: - Coordination
     private func coordinateToLogin() -> Observable<Void> {
         let loginCoordinator = LoginCoordinator(rootViewController: rootViewController)
         return coordinate(to: loginCoordinator)

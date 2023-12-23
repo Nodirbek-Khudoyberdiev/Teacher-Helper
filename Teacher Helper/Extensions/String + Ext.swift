@@ -7,6 +7,9 @@
 
 import Foundation
 
+let localFormatPhone = "+XXX XX XXX XX XX"
+let maskedFormatPhone = "+XXX XX *** ** XX"
+
 extension String {
     static func localized(_ strings: Strings) -> String {
         return Localization.getValue(strings)
@@ -22,6 +25,40 @@ extension String? {
 }
 
 extension String {
+    
+    /// For formatting phone number
+    /// - Parameters:
+    ///   - mask: +XXX XX XXX-XX XX
+    /// - Returns: formatted phone number
+    func format(with mask: String = localFormatPhone, hideCharacter: Character = "*") -> String {
+        let numbers = self.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex // numbers iterator
+
+        // iterate over the mask characters until the iterator of numbers ends
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers[index])
+
+                // move numbers iterator to the next index
+                index = numbers.index(after: index)
+
+            } else if ch == hideCharacter {
+                // replace with the specified hide character
+                result.append(hideCharacter)
+            } else {
+                result.append(ch) // just append a mask character
+            }
+        }
+        return result
+    }
+
+    
+    var isPhoneNumber: Bool {
+        return self.hasPrefix("+998") || self.hasPrefix("998")
+    }
+    
     enum ValidTypes {
         case name
         case email

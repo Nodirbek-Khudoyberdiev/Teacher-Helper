@@ -12,13 +12,26 @@ class LoginView: BaseView {
     lazy var firstField = TitledTextField(title: "Логин", txtFieldType: .email)
     lazy var secondField = TitledTextField(title: "Пароль", txtFieldType: .password)
     
+    lazy var vScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.build(axis: .vertical,
                         alignment: .fill,
-                        distribution: .fillEqually,
-                        spacing: 16, 
-                        views: [firstField, secondField])
+                        distribution: .fill,
+                        spacing: 0,
+                        views: [
+                            titleLabel,
+                            subtitleLabel,
+                            firstField,
+                            secondField,
+                            forgotPassword,
+                            nextButton
+                        ])
         return stackView
     }()
     
@@ -47,6 +60,7 @@ class LoginView: BaseView {
         attributedString.setColorForText(textForAttribute: stringValue, withColor: .Blue._2E85FF, underline: true)
         button.setAttributedTitle(attributedString, for: .normal)
         button.titleLabel?.font = .inter(font: .regular, size: 14)
+        button.contentHorizontalAlignment = .left
         return button
     }()
     
@@ -56,36 +70,27 @@ class LoginView: BaseView {
         firstField.setPlaceholder(txtFieldPlaceholder: "Почта или телефон")
         secondField.setPlaceholder(txtFieldPlaceholder: "Пароль...")
         backgroundColor = .white
-        addSubviews(stackView, titleLabel, subtitleLabel, nextButton, forgotPassword)
+        addSubview(vScrollView)
+        vScrollView.addSubview(stackView)
     }
     
     func setupConstrains() {
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(40)
-            make.centerX.equalToSuperview()
-        }
         
-        subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(16)
-            make.left.right.equalToSuperview().inset(16)
+        stackView.setCustomSpacing(16, after: titleLabel)
+        stackView.setCustomSpacing(32, after: subtitleLabel)
+        stackView.setCustomSpacing(16, after: firstField)
+        stackView.setCustomSpacing(6, after: secondField)
+        stackView.setCustomSpacing(32, after: forgotPassword)
+        
+        vScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(32)
-            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(vScrollView)
+            make.left.right.equalTo(self).inset(16)
+            make.width.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
-        
-        forgotPassword.snp.makeConstraints { make in
-            make.top.equalTo(stackView.snp.bottom).offset(6)
-            make.left.equalToSuperview().inset(16)
-            make.height.equalTo(20)
-        }
-        
-        nextButton.snp.makeConstraints { make in
-            make.top.equalTo(forgotPassword.snp.bottom).offset(32)
-            make.left.right.equalToSuperview().inset(16)
-            make.height.equalTo(44)
-        }
-        
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 protocol ViewControllerFactory {
     func loginVC() -> LoginVC
     func registerVC() -> RegisterVC
+    func otpVC(userName: String) -> OtpVC
 }

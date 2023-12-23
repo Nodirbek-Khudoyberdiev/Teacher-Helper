@@ -9,8 +9,6 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-
-
 protocol LoginViewModelProtocol: AuthViewModelProtocol {
     var openRegister: PublishSubject<Void> { get }
     func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>>

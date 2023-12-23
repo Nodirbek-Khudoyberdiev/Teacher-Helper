@@ -24,6 +24,13 @@ class RegisterCoordinator: ReactiveCoordinator<Void> {
             })
             .disposed(by: disposeBag)
         
+        viewController.viewModel.openOtp
+            .flatMap({ userName in
+                self.openOtp(userName: userName)
+            })
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         rootViewController.navigationController?
             .pushViewController(viewController, animated: true)
         return Observable.empty()
@@ -31,6 +38,11 @@ class RegisterCoordinator: ReactiveCoordinator<Void> {
     
     private func openLogin(){
         rootViewController.navigationController?.popViewController(animated: true)
+    }
+    
+    private func openOtp(userName: String) -> Observable<Void> {
+        let coordinator = OtpCoordinator(rootViewController: rootViewController, userName: userName)
+        return coordinate(to: coordinator)
     }
     
     
