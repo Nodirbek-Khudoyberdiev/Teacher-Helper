@@ -29,7 +29,6 @@ class RegisterVC: BaseViewController<RegisterView> {
         bindFields()
         bindButton()
         bindButtonLoading()
-        viewModel.openOtp.onNext("+998903558687")
     }
     
     override func loadView() {

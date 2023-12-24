@@ -7,22 +7,29 @@
 
 import RxSwift
 import RxRelay
+import RxCocoa
 
 protocol OtpViewModelProtocol {
     var userName: String { get }
     var otpNumber: BehaviorRelay<String> { get }
+    
     var isButtonEnabled: Observable<Bool> { get }
+    var loading: Driver<Bool> { get }
     
-    func sendOtp() -> Observable<Void>
-    
-    
-    init(userName: String)
+    func confirmOtp() -> Observable<NetworkResult<LoginResponse>>
+    func resendOtp() -> Observable<Void>
 }
 
 final class OtpViewModel: OtpViewModelProtocol {
     
     let userName: String
     let otpNumber = BehaviorRelay<String>(value: "")
+    let loadingPublisher = PublishSubject<Bool>()
+    let authWorker: AuthWorkerProtocol
+    var loading: Driver<Bool> {
+        return loadingPublisher
+            .asDriver(onErrorJustReturn: false)
+    }
     
     var isButtonEnabled: Observable<Bool> {
         return otpNumber
@@ -30,12 +37,29 @@ final class OtpViewModel: OtpViewModelProtocol {
             .map({$0.count == 6})
     }
     
-    init(userName: String) {
+    init(authWorker: AuthWorkerProtocol, userName: String) {
+        self.authWorker = authWorker
         self.userName = userName
     }
     
-    func sendOtp() -> Observable<Void> {
-        return Observable.just(())
+    func confirmOtp() -> Observable<NetworkResult<LoginResponse>> {
+        loadingPublisher.onNext(true)
+        return authWorker
+            .confirmOtp(username: userName, code: otpNumber.value)
+            .do(onSuccess: { _ in
+                self.loadingPublisher.onNext(false)
+            }, onError: { _ in
+                self.loadingPublisher.onNext(false)
+            })
+            .asObservable()
+    }
+    
+    func resendOtp() -> Observable<Void> {
+        return authWorker.resend(username: userName)
+            .asObservable()
+            .flatMap({ _ -> Observable<Void> in
+                return Observable.just(())
+            })
     }
     
 }

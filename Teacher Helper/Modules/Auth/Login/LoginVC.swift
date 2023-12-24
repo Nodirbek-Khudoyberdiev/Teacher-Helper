@@ -37,6 +37,11 @@ class LoginVC: BaseViewController<LoginView> {
         view = LoginView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView().firstField.textField.becomeFirstResponder()
+    }
+    
     private func bindLoginButton(){
         mainView().nextButton
             .rx

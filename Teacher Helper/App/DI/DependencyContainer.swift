@@ -66,7 +66,7 @@ extension DependencyContainer {
     }
     
     func otpViewModel(userName: String) -> OtpViewModelProtocol {
-        return OtpViewModel(userName: userName)
+        return OtpViewModel(authWorker: authWorker(), userName: userName)
     }
     
 }

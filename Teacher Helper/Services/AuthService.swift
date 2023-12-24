@@ -9,7 +9,9 @@ import RxSwift
 
 protocol AuthServiceProtocol {
     func login(userName: String, password: String) -> Single<NetworkResult<LoginResponse>>
-    func register(userName: String, password: String) -> Single<NetworkResult<RegisterResponse>>
+    func register(userName: String, password: String) -> Single<NetworkResult<EmptyResponse>>
+    func resendOtp(userName: String) -> Single<NetworkResult<EmptyResponse>>
+    func confirmOtp(userName: String, code: String) -> Single<NetworkResult<LoginResponse>>
 }
 
 class AuthService: AuthServiceProtocol {
@@ -26,9 +28,22 @@ class AuthService: AuthServiceProtocol {
             .asSingle()
     }
     
-    func register(userName: String, password: String) -> Single<NetworkResult<RegisterResponse>> {
+    func register(userName: String, password: String) -> Single<NetworkResult<EmptyResponse>> {
         let authEndpoint = AuthEndpoint.register(firstName: "", lastName: "", userName: userName, password: password, region: 1, city: 187)
-        return networking.request(type: RegisterResponse.self, endpoint: authEndpoint)
+        return networking.request(type: EmptyResponse.self, endpoint: authEndpoint)
+            .asSingle()
+    }
+
+    func confirmOtp(userName: String, code: String) -> Single<NetworkResult<LoginResponse>> {
+        let authEndpoint = AuthEndpoint.confirm(userName: userName, code: code)
+        return networking.request(type: LoginResponse.self, endpoint: authEndpoint)
+            .asSingle()
+            
+    }
+    
+    func resendOtp(userName: String) -> Single<NetworkResult<EmptyResponse>> {
+        let authEndpoint = AuthEndpoint.resend(username: userName)
+        return networking.request(type: EmptyResponse.self, endpoint: authEndpoint)
             .asSingle()
     }
     

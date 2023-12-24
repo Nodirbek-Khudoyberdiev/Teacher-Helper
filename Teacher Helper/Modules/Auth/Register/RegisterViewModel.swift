@@ -12,11 +12,11 @@ import RxCocoa
 protocol RegisterViewModelProtocol: AuthViewModelProtocol {
     var openLogin: PublishSubject<Void> { get }
     var openOtp: PublishSubject<String> { get }
-    func register(type: AuthType) -> Driver<NetworkResult<RegisterResponse>>
+    func register(type: AuthType) -> Driver<NetworkResult<EmptyResponse>>
 }
 
 extension RegisterViewModelProtocol {
-    func register(type: AuthType = .local) -> Driver<NetworkResult<RegisterResponse>> {
+    func register(type: AuthType = .local) -> Driver<NetworkResult<EmptyResponse>> {
         return register(type: type)
     }
 
@@ -52,7 +52,7 @@ final class RegisterViewModel: RegisterViewModelProtocol {
         self.worker = worker
     }
     
-    func register(type: AuthType) -> Driver<NetworkResult<RegisterResponse>> {
+    func register(type: AuthType) -> Driver<NetworkResult<EmptyResponse>> {
         loadingPublisher.onNext(true)
         return worker.registerUser(type: type, userName: username.value!, password: password.value!)
             .asDriver(onErrorJustReturn: .error(globalDefaultError))

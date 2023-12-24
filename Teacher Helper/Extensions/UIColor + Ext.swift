@@ -30,8 +30,17 @@ extension UIColor {
     static let appBlackColor = UIColor(hex: "101828")
     
     struct Blue {
-        static let _400 = UIColor(hex: "40BFC1")
         static let _2E85FF = UIColor(hex: "2E85FF")
+    }
+    
+    struct Main {
+        static let _500 = UIColor(hex: "26A2A6")
+        static let _400 = UIColor(hex: "40BFC1")
+        static let _200 = UIColor(hex: "A3ECE8")
+    }
+
+    struct Error {
+        static let _300 = UIColor(hex: "FDA29B")
     }
     
     struct Gray {

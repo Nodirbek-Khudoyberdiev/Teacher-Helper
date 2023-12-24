@@ -11,19 +11,16 @@ class PrimaryButton: UIButton, ActivityIndicatorProtocol {
     
     lazy var activictyIndicator = ActivityIndicator()
     
-    override var isEnabled: Bool {
-        didSet {
-            backgroundColor = .Blue._400.withAlphaComponent(isEnabled ? 1 : 0.5)
-        }
-    }
-    
     init(title: String){
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         titleLabel?.font = .inter(font: .semiBold, size: 16)
-        backgroundColor = .Blue._400
+        backgroundColor = .Main._400
         cornerRadius = 8
         setupConstraints()
+        setBackgroundColor(color: .Main._400, forState: .normal)
+        setBackgroundColor(color: .Main._500, forState: .highlighted)
+        setBackgroundColor(color: .Main._200, forState: .disabled)
     }
     
     required init?(coder: NSCoder) {

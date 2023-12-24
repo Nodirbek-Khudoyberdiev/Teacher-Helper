@@ -9,6 +9,30 @@ import UIKit
 
 class OtpView: BaseView {
     
+    lazy var clockImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "clock")
+        imageView.snp.makeConstraints({
+            $0.size.equalTo(24)
+        })
+        return imageView
+    }()
+    
+    lazy var timeLabel: BaseLabel = {
+        let label = BaseLabel()
+        label.build(text: "1:00", font: .inter(font: .regular, size: 20), color: .Gray._700, lines: 1, alignment: .left)
+        return label
+    }()
+    
+    lazy var timeContainerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.isHidden = true
+        stackView.build(axis: .horizontal, alignment: .fill, distribution: .fill, spacing: 8, views: [clockImageView, timeLabel])
+        return stackView
+    }()
+    
+    
     lazy var titleLabel: BaseLabel = {
         let label = BaseLabel()
         label.build(text: .localized(.register), font: .inter(font: .bold, size: 24), color: .Gray._700, lines: 1, alignment: .center)
@@ -73,7 +97,7 @@ class OtpView: BaseView {
     }()
     
     func setup() {
-        addSubviews(titleLabel, subtitleLabel, otpContainerView, retryStackView, nextButton)
+        addSubviews(titleLabel, subtitleLabel, otpContainerView, retryStackView, nextButton, timeContainerStackView)
     }
     
     func setupConstrains() {
@@ -101,6 +125,11 @@ class OtpView: BaseView {
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(retryStackView.snp.bottom).offset(32)
             make.left.right.equalToSuperview().inset(16)
+        }
+        
+        timeContainerStackView.snp.makeConstraints { make in
+            make.top.equalTo(otpContainerView.snp.bottom).offset(32)
+            make.centerX.equalToSuperview()
         }
         
     }

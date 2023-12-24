@@ -15,4 +15,16 @@ extension UIButton {
         button.titleLabel?.font = .inter(font: .regular, size: size)
         return button
     }
+    
+    func setBackgroundColor(color: UIColor, forState: UIControl.State) {
+        self.clipsToBounds = true
+        let size = CGSize(width: 1, height: 1)
+        UIGraphicsBeginImageContext(size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.cgColor)
+        context?.fill(CGRect(origin: CGPoint.zero, size: size))
+        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        setBackgroundImage(colorImage, for: forState)
+    }
 }
