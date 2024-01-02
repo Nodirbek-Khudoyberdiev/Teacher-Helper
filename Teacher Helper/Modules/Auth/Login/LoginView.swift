@@ -9,7 +9,7 @@ import UIKit
 
 class LoginView: BaseView {
     
-    lazy var firstField = TitledTextField(title: "Логин", txtFieldType: .email)
+    lazy var firstField = TitledTextField(title: "Логин", txtFieldType: .phone)
     lazy var secondField = TitledTextField(title: "Пароль", txtFieldType: .password)
     
     lazy var vScrollView: UIScrollView = {
@@ -67,7 +67,7 @@ class LoginView: BaseView {
     lazy var nextButton = PrimaryButton(title: "Войти")
     
     func setup() {
-        firstField.setPlaceholder(txtFieldPlaceholder: "Почта или телефон")
+        firstField.setPlaceholder(txtFieldPlaceholder: "Номер телефона")
         secondField.setPlaceholder(txtFieldPlaceholder: "Пароль...")
         backgroundColor = .white
         addSubview(vScrollView)

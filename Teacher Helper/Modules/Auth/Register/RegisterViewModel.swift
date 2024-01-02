@@ -40,7 +40,7 @@ final class RegisterViewModel: RegisterViewModelProtocol {
     var buttonEnabled: Observable<Bool> {
         return Observable.combineLatest(username, password){ username, password in
             if let username = username, let password = password {
-                return username.isValid(valueType: .email) && (password.count >= 8)
+                return username.count == 12 && (password.count >= 8)
             }
             return false
         }

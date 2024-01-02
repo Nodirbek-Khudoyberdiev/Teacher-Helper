@@ -26,12 +26,21 @@ extension String? {
 
 extension String {
     
+    var replaceSpace: String {
+        return self.replacingOccurrences(of: " ", with: "")
+    }
+    
+    var digits: String {
+           return components(separatedBy: CharacterSet.decimalDigits.inverted)
+               .joined()
+       }
+    
     /// For formatting phone number
     /// - Parameters:
     ///   - mask: +XXX XX XXX-XX XX
     /// - Returns: formatted phone number
     func format(with mask: String = localFormatPhone, hideCharacter: Character = "*") -> String {
-        let numbers = self.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        let numbers = self.replacingOccurrences(of: "[^0-9+]", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex // numbers iterator
 

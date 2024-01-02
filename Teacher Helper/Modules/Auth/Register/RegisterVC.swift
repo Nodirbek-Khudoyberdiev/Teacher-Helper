@@ -67,6 +67,7 @@ class RegisterVC: BaseViewController<RegisterView> {
             .rx
             .text
             .orEmpty
+            .map({$0.digits})
             .bind(to: viewModel.username)
             .disposed(by: bag)
         

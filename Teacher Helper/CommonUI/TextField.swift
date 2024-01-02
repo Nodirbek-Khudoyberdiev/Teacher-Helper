@@ -10,7 +10,7 @@ import UIKit
 enum TextFieldInputType {
     case ordinary
     case password
-    case email
+    case phone
 }
 
 class TextField: UITextField {
@@ -26,6 +26,7 @@ class TextField: UITextField {
     }()
 
     let padding: UIEdgeInsets
+    let type: TextFieldInputType
     
     override var isSecureTextEntry: Bool {
         didSet {
@@ -36,6 +37,7 @@ class TextField: UITextField {
     
     init(type: TextFieldInputType = .ordinary, padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)) {
         self.padding = padding
+        self.type = type
         super.init(frame: .zero)
         typeSettled(type)
     }
@@ -61,18 +63,19 @@ class TextField: UITextField {
     }
     
     private func typeSettled(_ type: TextFieldInputType){
-        
+        delegate = self
         switch type {
         case .password:
             rightView = secureButton
             isSecureTextEntry = true
             rightViewMode = .always
             secureButton.addTarget(self, action: #selector(toggleSecure), for: .touchUpInside)
-        case .email:
+        case .phone:
             // Setup for email validation
-            keyboardType = .emailAddress
+            keyboardType = .phonePad
             autocorrectionType = .no
             autocapitalizationType = .none
+            addTarget(self, action: #selector(reformatAsCardNumberOrPhoneNumber), for: .editingChanged)
             isSecureTextEntry = false
         default:
             break
@@ -82,5 +85,86 @@ class TextField: UITextField {
     @objc private func toggleSecure(){
         isSecureTextEntry.toggle()
     }
+    
 }
 
+extension TextField: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch type {
+        case .phone:
+            let text = (textField.text ?? "")
+            if string.isEmpty {
+                // Backspace was pressed, allow the deletion
+                return true
+            }
+            return !(text.digits.count == 12)
+        default:
+            return true
+        }
+    }
+    
+    @objc
+    func reformatAsCardNumberOrPhoneNumber(textField: UITextField) {
+        var targetCursorPosition = 0
+        if let startPosition = textField.selectedTextRange?.start {
+            targetCursorPosition = textField.offset(from: textField.beginningOfDocument, to: startPosition)
+        }
+        
+        var cardNumberWithoutSpaces = ""
+        if var text = textField.text {
+            if !text.hasPrefix("+") {
+                text = "+" + text
+                targetCursorPosition += 1
+            }
+            cardNumberWithoutSpaces = self.removeNonDigits(string: text, andPreserveCursorPosition: &targetCursorPosition)
+        }
+        
+        
+        // Format as a credit card number
+        let phoneNumberWithSpaces = self.insertSpacesForPhoneNumber(cardNumberWithoutSpaces, preserveCursorPosition: &targetCursorPosition)
+        textField.text = phoneNumberWithSpaces
+        
+        if let targetPosition = textField.position(from: textField.beginningOfDocument, offset: targetCursorPosition) {
+            textField.selectedTextRange = textField.textRange(from: targetPosition, to: targetPosition)
+        }
+    }
+    
+    func removeNonDigits(string: String, andPreserveCursorPosition cursorPosition: inout Int) -> String {
+        var digitsOnlyString = ""
+        let originalCursorPosition = cursorPosition
+        
+        for (i, characterToAdd) in string.enumerated() {
+            if characterToAdd >= "0" && characterToAdd <= "9" {
+                digitsOnlyString.append(characterToAdd)
+            } else if characterToAdd == "+" && i == 0 {
+                digitsOnlyString.append(characterToAdd)
+            } else if i < originalCursorPosition {
+                cursorPosition -= 1
+            }
+        }
+        
+        return digitsOnlyString
+    }
+    
+    func insertSpacesForPhoneNumber(_ string: String, preserveCursorPosition cursorPosition: inout Int) -> String {
+        var stringWithAddedSpaces = ""
+        let cursorPositionInSpacelessString = cursorPosition
+        
+        for i in 0..<string.count {
+            if i == 4 || i == 6 || i == 9 || i == 11 {
+                stringWithAddedSpaces.append(" ")
+                
+                if i < cursorPositionInSpacelessString {
+                    cursorPosition += 1
+                }
+            }
+            
+            let characterToAdd = string[string.index(string.startIndex, offsetBy: i)]
+            stringWithAddedSpaces.append(characterToAdd)
+        }
+        
+        return stringWithAddedSpaces
+    }
+    
+}

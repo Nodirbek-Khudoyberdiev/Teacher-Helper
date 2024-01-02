@@ -59,7 +59,9 @@ class TopAlertView: UIView {
         window.addSubview(self)
         titleLabel.text = title
         UIView.animate(withDuration: animationDuration){
-            let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100)
+            let window = UIApplication.shared.windows.first
+            let topPadding = window?.safeAreaInsets.top ?? 0.0
+            let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: topPadding + 33)
             self.frame = frame
             self.layoutIfNeeded()
         }

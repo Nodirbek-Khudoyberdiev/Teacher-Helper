@@ -56,7 +56,7 @@ final class APIClient: APIClientProtocol {
                 return Observable.just(.error(defaultError))
             }
             .compactMap({$0})
-            .retry(3, delay: .exponential(initial: 3, multiplier: 1, maxDelay: 16))
+//            .retry(3, delay: .exponential(initial: 3, multiplier: 1, maxDelay: 16))
     }
     
     private func returnDefaultError(error: Error) -> BaseError {

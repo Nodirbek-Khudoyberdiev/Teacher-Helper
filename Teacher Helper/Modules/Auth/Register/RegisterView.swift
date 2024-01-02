@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterView: BaseView {
 
-    lazy var firstField = TitledTextField(title: "Логин", txtFieldType: .email)
+    lazy var firstField = TitledTextField(title: "Логин", txtFieldType: .phone)
     lazy var secondField = TitledTextField(title: "Пароль", txtFieldType: .password)
     
     lazy var vScrollView: UIScrollView = {
@@ -55,7 +55,7 @@ class RegisterView: BaseView {
     lazy var nextButton = PrimaryButton(title: .localized(.register))
     
     func setup() {
-        firstField.setPlaceholder(txtFieldPlaceholder: "Почта или телефон")
+        firstField.setPlaceholder(txtFieldPlaceholder: "Номер телефона")
         secondField.setPlaceholder(txtFieldPlaceholder: "Пароль...")
         backgroundColor = .white
         addSubview(vScrollView)

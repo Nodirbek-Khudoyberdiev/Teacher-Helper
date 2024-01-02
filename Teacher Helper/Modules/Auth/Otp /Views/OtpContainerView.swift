@@ -55,12 +55,6 @@ class OtpContainerView: UIStackView {
                sixthNumber
                 ]
         )
-        firstNumber.tag = 0
-        secondNumber.tag = 1
-        thirdumber.tag = 2
-        fourthNumber.tag = 3
-        fifthNumber.tag = 4
-        sixthNumber.tag = 5
         
         separator.snp.makeConstraints { make in
             make.width.equalTo(8)

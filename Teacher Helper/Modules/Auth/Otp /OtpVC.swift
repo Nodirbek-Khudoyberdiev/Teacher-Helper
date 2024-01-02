@@ -12,7 +12,10 @@ import RxCocoa
 class OtpVC: BaseViewController<OtpView> {
     
     let viewModel: OtpViewModelProtocol
+    private var timer: Timer?
     private var attempts = 3
+    private var seconds = 60
+    private var canRepeat = true
     
     init(viewModel: OtpViewModelProtocol) {
         self.viewModel = viewModel
@@ -61,51 +64,40 @@ class OtpVC: BaseViewController<OtpView> {
     }
     
     private func resendOtp() {
-        let getCodeTapObservable = mainView().getCodeLabel.rx.tapGesture().when(.recognized)
-        let retryTapObservable = mainView().retryImageView.rx.tapGesture().when(.recognized)
-
-        Observable.combineLatest(getCodeTapObservable, retryTapObservable)
-            .flatMap { [unowned self] _ -> Observable<Int> in
-                // Disable UI elements here if needed
-                return countdownTimer()
-            }
-            .flatMap { [unowned self] remainingSeconds -> Observable<Void> in
-                // Update UI with remaining time
-                updateTimerLabel(remainingSeconds)
-                return viewModel.resendOtp()
-            }
-            .subscribe()
-            .disposed(by: bag)
+        mainView().retryStackView.addTapGesture(tapNumber: 1, target: self, action: #selector(sendOtp))
     }
 
-    private func countdownTimer() -> Observable<Int> {
-        attempts = 1 // Reset attempts if needed
-        mainView().retryStackView.isHidden = true
-        mainView().timeContainerStackView.isHidden = false
-        var seconds = 60 // Initial countdown time
-
-        return Observable<Int>
-            .interval(.seconds(1), scheduler: MainScheduler.instance)
-            .take(while: { [unowned self] _ in
-                if seconds > 0 {
-                    seconds -= 1
-                }
-                return seconds > 0 && self.attempts > 0
-            })
-            .do(onCompleted: { [unowned self] in
-                // Show retryStackView and hide timeContainerStackView when countdown completes
-                self.mainView().retryStackView.isHidden = false
-                self.mainView().timeContainerStackView.isHidden = true
-            })
-            .map { _ in
-                // Emit remaining seconds
-                return seconds
-            }
+    @objc private func sendOtp() {
+        guard attempts != 0 else { return }
+        
+        if canRepeat {
+            mainView().timeContainerStackView.isHidden = false
+            mainView().retryStackView.isHidden = true
+            viewModel.resendOtp()
+                .subscribe()
+                .disposed(by: bag)
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(decrementSeconds),
+                                     userInfo: nil,
+                                     repeats: true)
+        
     }
-
-
-    private func updateTimerLabel(_ seconds: Int) {
+    
+    @objc private func decrementSeconds(){
+        canRepeat = false
+        seconds -= 1
         mainView().timeLabel.text = "0:\(seconds)"
+        if seconds == 0 {
+            attempts -= 1
+            timer?.invalidate()
+            mainView().timeContainerStackView.isHidden = true
+            mainView().retryStackView.isHidden = false
+            mainView().attemtLabel.text = "Осталось \(attempts) попытки"
+            canRepeat = true
+        }
     }
 
     
