@@ -25,7 +25,6 @@ final class NetworkChecker {
         monitor.pathUpdateHandler = {[weak self] path in
             guard let self = self else { return }
             let status = path.status == .satisfied
-            print("Internet ", status)
             self.checkInternetPublisher.onNext(status)
         }
         let queue = DispatchQueue(label: "Network")

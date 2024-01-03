@@ -11,6 +11,7 @@ import RxCocoa
 
 protocol LoginViewModelProtocol: AuthViewModelProtocol {
     var openRegister: PublishSubject<Void> { get }
+    var openForgotPassword: PublishSubject<Void> { get }
     func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>>
 }
 
@@ -25,6 +26,7 @@ class LoginViewModel: LoginViewModelProtocol {
     lazy var username = BehaviorRelay<String?>(value: nil)
     lazy var password = BehaviorRelay<String?>(value: nil)
     lazy var openRegister = PublishSubject<Void>()
+    lazy var openForgotPassword = PublishSubject<Void>()
     
     var loading: Driver<Bool> {
         return loadingPublisher

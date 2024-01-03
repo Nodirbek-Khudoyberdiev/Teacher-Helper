@@ -56,10 +56,15 @@ final class RegisterViewModel: RegisterViewModelProtocol {
         loadingPublisher.onNext(true)
         return worker.registerUser(type: type, userName: username.value!, password: password.value!)
             .asDriver(onErrorJustReturn: .error(globalDefaultError))
-            .do(onNext: {[weak self] _ in
+            .do(onNext: {[weak self] result in
                 guard let self else { return }
-                let userName = self.username.value ?? ""
-                self.openOtp.onNext(userName)
+                switch result {
+                case .success:
+                    let userName = self.username.value ?? ""
+                    self.openOtp.onNext(userName)
+                case .error:
+                    break
+                }
                 self.loadingPublisher.onNext(false)
             })
     }

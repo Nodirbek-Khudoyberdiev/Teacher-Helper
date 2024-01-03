@@ -12,6 +12,7 @@ protocol AuthWorkerProtocol {
     func registerUser(type: AuthType, userName: String, password: String) -> Single<NetworkResult<EmptyResponse>>
     func confirmOtp(username: String, code: String) -> Single<NetworkResult<LoginResponse>>
     func resend(username: String) -> Single<NetworkResult<EmptyResponse>>
+    func changePassword(_ password: String) -> Single<NetworkResult<EmptyResponse>>
 }
 
 class AuthWorker: AuthWorkerProtocol {
@@ -52,5 +53,9 @@ class AuthWorker: AuthWorkerProtocol {
     
     func resend(username: String) -> Single<NetworkResult<EmptyResponse>> {
         return authService.resendOtp(userName: username)
+    }
+    
+    func changePassword(_ password: String) -> Single<NetworkResult<EmptyResponse>> {
+        return authService.changePassword(password)
     }
 }

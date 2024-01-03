@@ -13,7 +13,15 @@ class OtpVC: BaseViewController<OtpView> {
     
     let viewModel: OtpViewModelProtocol
     private var timer: Timer?
-    private var attempts = 3
+    private var attempts = 3 {
+        didSet {
+            if attempts == 0 {
+                mainView().attemtLabel.text = "Превышен лимит 3 попыток"
+                mainView().retryImageView.isHidden = true
+                mainView().getCodeLabel.isHidden = true
+            }
+        }
+    }
     private var seconds = 60
     private var canRepeat = true
     
@@ -48,11 +56,7 @@ class OtpVC: BaseViewController<OtpView> {
     }
     
     private func setup(){
-        if viewModel.userName.isPhoneNumber {
-            mainView().subtitleLabel.text = "Код отправлен на \(viewModel.userName.format(with: maskedFormatPhone))"
-        } else {
-            mainView().subtitleLabel.text = "Код отправлен на \(viewModel.userName)"
-        }
+        mainView().subtitleLabel.text = "Код отправлен на \(viewModel.userName.format(with: maskedFormatPhone))"
     }
     
     private func bindLoadingButton(){
@@ -68,7 +72,9 @@ class OtpVC: BaseViewController<OtpView> {
     }
 
     @objc private func sendOtp() {
-        guard attempts != 0 else { return }
+        guard attempts != 0 else {
+            return
+        }
         
         if canRepeat {
             mainView().timeContainerStackView.isHidden = false
@@ -92,6 +98,7 @@ class OtpVC: BaseViewController<OtpView> {
         mainView().timeLabel.text = "0:\(seconds)"
         if seconds == 0 {
             attempts -= 1
+            seconds = 60
             timer?.invalidate()
             mainView().timeContainerStackView.isHidden = true
             mainView().retryStackView.isHidden = false

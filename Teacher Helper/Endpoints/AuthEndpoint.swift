@@ -8,7 +8,7 @@
 import Foundation
 
 enum AuthEndpoint {
-    case register(firstName: String, lastName: String, userName: String, password: String, region: Int, city: Int)
+    case register(userName: String, password: String)
     case login(username: String, password: String)
     case confirm(userName: String, code: String)
     case resend(username: String)
@@ -50,14 +50,10 @@ extension AuthEndpoint: Endpoint {
                 "username": userName,
                 "password": password
             ]
-        case .register(let firstName, let lastName, let userName, let password, let region, let city):
+        case .register(let userName, let password):
             return [
-                "first_name": firstName,
-                "last_name": lastName,
                 "username": userName,
-                "password": password,
-                "region": region,
-                "city": city
+                "password": password
             ]
         case .confirm(let userName, let code):
             return [
@@ -78,9 +74,19 @@ extension AuthEndpoint: Endpoint {
     }
     
     var headers: [String : String] {
-        return [
-            "Content-Type":"application/json"
-        ]
+        switch self {
+        case .passwordChange(let password):
+            return [
+                "Content-Type":"application/json",
+                "locale": UserDefaults.standard.getLocaleCode(),
+                "Authorization": "Bearer \(KeychainStore.token ?? "")"
+            ]
+        default:
+            return [
+                "Content-Type":"application/json",
+                "locale": UserDefaults.standard.getLocaleCode()
+            ]
+        }
     }
 }
 

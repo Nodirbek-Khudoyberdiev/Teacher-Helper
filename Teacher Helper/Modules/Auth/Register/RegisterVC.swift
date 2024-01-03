@@ -31,6 +31,11 @@ class RegisterVC: BaseViewController<RegisterView> {
         bindButtonLoading()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView().firstField.textField.becomeFirstResponder()
+    }
+    
     override func loadView() {
         super.loadView()
         view = RegisterView()
@@ -43,8 +48,8 @@ class RegisterVC: BaseViewController<RegisterView> {
             .flatMap({ self.viewModel.register()})
             .subscribe(onNext: { result in
                 switch result {
-                case .error:
-                    TopAlertView.shared.showAlert(title: .localized(.wrongPinOrUsername))
+                case .error(let error):
+                    TopAlertView.shared.showAlert(title: error.message ?? .localized(.wrongPinOrUsername))
                 case .success:
                     TopAlertView.shared.hideAlert()
                 }
