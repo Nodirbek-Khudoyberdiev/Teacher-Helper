@@ -48,8 +48,13 @@ final class OtpViewModel: OtpViewModelProtocol {
         loadingPublisher.onNext(true)
         return authWorker
             .confirmOtp(username: userName, code: otpNumber.value)
-            .do(onSuccess: { _ in
-                self.codeConfirmed.onNext(true)
+            .do(onSuccess: { result in
+                switch result {
+                case .success:
+                    self.codeConfirmed.onNext(true)
+                case .error:
+                    break
+                }
                 self.loadingPublisher.onNext(false)
             }, onError: { _ in
                 self.loadingPublisher.onNext(false)

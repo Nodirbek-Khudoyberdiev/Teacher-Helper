@@ -28,29 +28,27 @@ class PasswordChangedView: BaseView {
     
     lazy var loginButton = PrimaryButton(title: "Войти")
     
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.build(axis: .vertical,
-                        alignment: .center,
-                        distribution: .fill,
-                        spacing: 0,
-                        views: [
-                            imageView, passwordChangedLabel, loginButton
-                        ])
-        return stackView
-    }()
-    
     func setup() {
-        stackView.setCustomSpacing(12, after: imageView)
-        stackView.setCustomSpacing(52, after: passwordChangedLabel)
-        addSubview(stackView)
+        addSubviews(imageView, passwordChangedLabel, loginButton)
     }
     
     func setupConstrains() {
         
-        stackView.snp.makeConstraints { make in
-//            make.left.right.equalToSuperview().inset(16)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+        imageView.snp.makeConstraints({
+            $0.size.equalTo(48)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalToSuperview()
+        })
+        
+        passwordChangedLabel.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(12)
+            $0.left.right.equalToSuperview().inset(16)
         }
+        
+        loginButton.snp.makeConstraints({
+            $0.top.equalTo(passwordChangedLabel.snp.bottom).offset(52)
+            $0.left.right.equalToSuperview().inset(16)
+        })
+        
     }
 }
