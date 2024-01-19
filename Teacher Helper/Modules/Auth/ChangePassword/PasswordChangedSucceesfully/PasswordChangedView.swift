@@ -32,7 +32,7 @@ class PasswordChangedView: BaseView {
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.build(axis: .vertical,
-                        alignment: .fill,
+                        alignment: .center,
                         distribution: .fill,
                         spacing: 0,
                         views: [
@@ -50,7 +50,7 @@ class PasswordChangedView: BaseView {
     func setupConstrains() {
         
         stackView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(16)
+//            make.left.right.equalToSuperview().inset(16)
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
         }
     }
