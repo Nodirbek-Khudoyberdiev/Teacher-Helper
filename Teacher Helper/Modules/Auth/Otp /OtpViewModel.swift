@@ -15,6 +15,7 @@ protocol OtpViewModelProtocol {
     
     var isButtonEnabled: Observable<Bool> { get }
     var loading: Driver<Bool> { get }
+    var codeConfirmed: PublishSubject<Bool> { get }
     
     func confirmOtp() -> Observable<NetworkResult<LoginResponse>>
     func resendOtp() -> Observable<Void>
@@ -25,6 +26,7 @@ final class OtpViewModel: OtpViewModelProtocol {
     let userName: String
     let otpNumber = BehaviorRelay<String>(value: "")
     let loadingPublisher = PublishSubject<Bool>()
+    let codeConfirmed = PublishSubject<Bool>()
     let authWorker: AuthWorkerProtocol
     var loading: Driver<Bool> {
         return loadingPublisher
@@ -46,7 +48,13 @@ final class OtpViewModel: OtpViewModelProtocol {
         loadingPublisher.onNext(true)
         return authWorker
             .confirmOtp(username: userName, code: otpNumber.value)
-            .do(onSuccess: { _ in
+            .do(onSuccess: { result in
+                switch result {
+                case .success:
+                    self.codeConfirmed.onNext(true)
+                case .error:
+                    break
+                }
                 self.loadingPublisher.onNext(false)
             }, onError: { _ in
                 self.loadingPublisher.onNext(false)

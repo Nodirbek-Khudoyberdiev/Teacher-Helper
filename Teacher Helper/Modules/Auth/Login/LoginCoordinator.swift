@@ -25,6 +25,14 @@ class LoginCoordinator: ReactiveCoordinator<Void> {
             .subscribe()
             .disposed(by: disposeBag)
         
+        viewController
+            .viewModel.openForgotPassword
+            .flatMap({ [unowned self] in
+                openForgotPassword()
+            })
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         rootViewController.navigationController?
             .pushViewController(viewController, animated: true)
         return Observable.empty()
@@ -33,6 +41,11 @@ class LoginCoordinator: ReactiveCoordinator<Void> {
     private func openRegister() -> Observable<Void> {
         let loginCoordinator = RegisterCoordinator(rootViewController: rootViewController)
         return coordinate(to: loginCoordinator)
+    }
+    
+    private func openForgotPassword() -> Observable<Void> {
+        let forgotPasswordCoordinator = ForgotPasswordCoordinator(rootViewController: rootViewController)
+        return coordinate(to: forgotPasswordCoordinator)
     }
     
 }

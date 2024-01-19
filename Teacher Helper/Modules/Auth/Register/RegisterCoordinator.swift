@@ -28,7 +28,10 @@ class RegisterCoordinator: ReactiveCoordinator<Void> {
             .flatMap({ userName in
                 self.openOtp(userName: userName)
             })
-            .subscribe()
+            .observeOnMain()
+            .subscribe(onNext: { succeed in
+                self.openMainScreen()
+            })
             .disposed(by: disposeBag)
         
         rootViewController.navigationController?
@@ -40,11 +43,15 @@ class RegisterCoordinator: ReactiveCoordinator<Void> {
         rootViewController.navigationController?.popViewController(animated: true)
     }
     
-    private func openOtp(userName: String) -> Observable<Void> {
+    private func openOtp(userName: String) -> Observable<Bool> {
         let coordinator = OtpCoordinator(rootViewController: rootViewController, userName: userName)
         return coordinate(to: coordinator)
     }
     
-    
+    private func openMainScreen(){
+        let vc = UIViewController()
+        vc.view.backgroundColor = .yellow
+        rootViewController.navigationController?.pushViewController(vc, animated: true)
+    }
     
 }

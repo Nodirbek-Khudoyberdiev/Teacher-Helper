@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "BEDCBC95-BB67-4FD7-AEB5-9FCE6D809643"
+   uuid = "28CEB536-10C8-4ED3-87CA-6AC0EA391D37"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A43979C0-82ED-401A-90A3-D0090A1EEB1C"
+            uuid = "7709FC57-1DA3-4D0E-99F1-73EE35D85959"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Teacher Helper/Modules/Auth/ForgotPassword/ForgotPasswordCoordinator.swift"
+            filePath = "Teacher Helper/Modules/Auth/Otp /OtpViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "start(_:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "confirmOtp()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

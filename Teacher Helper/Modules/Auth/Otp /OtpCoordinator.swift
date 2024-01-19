@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class OtpCoordinator: ReactiveCoordinator<Void> {
+class OtpCoordinator: ReactiveCoordinator<Bool> {
     let rootViewController: UIViewController
     let userName: String
     
@@ -16,10 +16,11 @@ class OtpCoordinator: ReactiveCoordinator<Void> {
         self.userName = userName
     }
     
-    override func start(_ di: DependencyContainerProtocol = DependencyContainer.shared) -> Observable<Void> {
+    override func start(_ di: DependencyContainerProtocol = DependencyContainer.shared) -> Observable<Bool> {
         let viewController = di.otpVC(userName: userName)
         rootViewController.navigationController?
             .pushViewController(viewController, animated: true)
-        return Observable.empty()
+        return viewController.viewModel.codeConfirmed
+            .take(1)
     }
 }

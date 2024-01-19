@@ -30,6 +30,7 @@ class LoginVC: BaseViewController<LoginView> {
         bindButton()
         bindButtonLoading()
         openRegister()
+        openForgotPassword()
     }
     
     override func loadView() {
@@ -65,6 +66,14 @@ class LoginVC: BaseViewController<LoginView> {
             .when(.recognized)
             .map( { _ in () } )
             .bind(to: viewModel.openRegister)
+            .disposed(by: bag)
+    }
+    
+    private func openForgotPassword(){
+        mainView().forgotPassword
+            .rx
+            .controlEvent(.touchUpInside)
+            .bind(to: viewModel.openForgotPassword)
             .disposed(by: bag)
     }
     

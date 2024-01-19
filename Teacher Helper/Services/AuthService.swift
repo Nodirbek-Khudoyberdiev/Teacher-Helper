@@ -12,6 +12,7 @@ protocol AuthServiceProtocol {
     func register(userName: String, password: String) -> Single<NetworkResult<EmptyResponse>>
     func resendOtp(userName: String) -> Single<NetworkResult<EmptyResponse>>
     func confirmOtp(userName: String, code: String) -> Single<NetworkResult<LoginResponse>>
+    func changePassword(_ password: String) -> Single<NetworkResult<EmptyResponse>>
 }
 
 class AuthService: AuthServiceProtocol {
@@ -29,7 +30,7 @@ class AuthService: AuthServiceProtocol {
     }
     
     func register(userName: String, password: String) -> Single<NetworkResult<EmptyResponse>> {
-        let authEndpoint = AuthEndpoint.register(firstName: "", lastName: "", userName: userName, password: password, region: 1, city: 187)
+        let authEndpoint = AuthEndpoint.register(userName: userName, password: password)
         return networking.request(type: EmptyResponse.self, endpoint: authEndpoint)
             .asSingle()
     }
@@ -43,6 +44,12 @@ class AuthService: AuthServiceProtocol {
     
     func resendOtp(userName: String) -> Single<NetworkResult<EmptyResponse>> {
         let authEndpoint = AuthEndpoint.resend(username: userName)
+        return networking.request(type: EmptyResponse.self, endpoint: authEndpoint)
+            .asSingle()
+    }
+    
+    func changePassword(_ password: String) -> Single<NetworkResult<EmptyResponse>> {
+        let authEndpoint = AuthEndpoint.passwordChange(password: password)
         return networking.request(type: EmptyResponse.self, endpoint: authEndpoint)
             .asSingle()
     }

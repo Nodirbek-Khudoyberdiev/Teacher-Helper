@@ -21,3 +21,14 @@ protocol AuthViewModelProtocol {
     var username: BehaviorRelay<String?> { get }
     var password: BehaviorRelay<String?> { get }
 }
+
+extension AuthViewModelProtocol {
+    
+    var username: BehaviorRelay<String?> {
+        return BehaviorRelay(value: nil)
+    }
+    
+    var password: BehaviorRelay<String?> {
+        return BehaviorRelay(value: nil)
+    }
+}

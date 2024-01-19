@@ -39,12 +39,13 @@ final class APIClient: APIClientProtocol {
                     case .httpRequestFailed(let response, let data):
                         if response.statusCode == 401 {
                             // return to HomePage
+                            if let data, let backendError = self.parseBackendError(data: data) {
+                                return Observable.just(.error(backendError))
+                            }
                             return Observable.just(.error(.init(status: false, message: nil, code: 401)))
                         } else {
-                            if let data {
-                                if let backendError = self.parseBackendError(data: data) {
-                                    return Observable.just(.error(backendError))
-                                }
+                            if let data, let backendError = self.parseBackendError(data: data) {
+                                return Observable.just(.error(backendError))
                             }
                         }
                     default:

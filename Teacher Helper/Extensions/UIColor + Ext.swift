@@ -49,6 +49,7 @@ extension UIColor {
         static let _500 = UIColor(hex: "667085")
         static let _200 = UIColor(hex: "EAECF0")
         static let _600 = UIColor(hex: "475467")
+        static let _900 = UIColor(hex: "101828")
     }
     
     

@@ -41,6 +41,16 @@ extension DependencyContainer {
         return OtpVC(viewModel: viewModel)
     }
     
+    func forgotPasswordVC() -> ForgotPasswordVC {
+        let viewModel = forgotPasswordViewModel()
+        return ForgotPasswordVC(viewModel: viewModel)
+    }
+    
+    func changePasswordVC() -> ChangePasswordVC {
+        let viewModel = changePasswordViewModel()
+        return ChangePasswordVC(viewModel: viewModel)
+    }
+    
 }
 
 // MARK: Workers DI
@@ -67,6 +77,16 @@ extension DependencyContainer {
     
     func otpViewModel(userName: String) -> OtpViewModelProtocol {
         return OtpViewModel(authWorker: authWorker(), userName: userName)
+    }
+    
+    func forgotPasswordViewModel() -> ForgotPasswordViewModelProtocol {
+        let viewModel: ForgotPasswordViewModelProtocol = ForgotPasswordViewModel(worker: authWorker())
+        return viewModel
+    }
+    
+    func changePasswordViewModel() -> ChangePasswordViewModelProtocol {
+        let viewModel: ChangePasswordViewModelProtocol = ChangePasswordViewModel(authWorker: authWorker())
+        return viewModel
     }
     
 }
