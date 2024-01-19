@@ -10,8 +10,7 @@ import UIKit
 class PasswordChangedView: BaseView {
     
     lazy var imageView: UIImageView = {
-        let frame = CGRect(x: 0, y: 0, width: 48, height: 48)
-        let imageView = UIImageView(frame: frame)
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "changedIcon")
         imageView.clipsToBounds = true
         return imageView
