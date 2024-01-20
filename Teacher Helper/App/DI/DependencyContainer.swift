@@ -51,6 +51,11 @@ extension DependencyContainer {
         return ChangePasswordVC(viewModel: viewModel)
     }
     
+    func mainScreen() -> MainScreenTabbarController {
+        let vc = MainScreenTabbarController()
+        return vc
+    }
+    
 }
 
 // MARK: Workers DI

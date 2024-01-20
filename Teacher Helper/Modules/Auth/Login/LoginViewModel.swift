@@ -12,6 +12,7 @@ import RxCocoa
 protocol LoginViewModelProtocol: AuthViewModelProtocol {
     var openRegister: PublishSubject<Void> { get }
     var openForgotPassword: PublishSubject<Void> { get }
+    var loginSucceed: PublishSubject<Void> { get }
     func login(type: AuthType) -> Driver<NetworkResult<LoginResponse>>
 }
 
@@ -27,6 +28,7 @@ class LoginViewModel: LoginViewModelProtocol {
     lazy var password = BehaviorRelay<String?>(value: nil)
     lazy var openRegister = PublishSubject<Void>()
     lazy var openForgotPassword = PublishSubject<Void>()
+    lazy var loginSucceed = PublishSubject<Void>()
     
     var loading: Driver<Bool> {
         return loadingPublisher
@@ -52,7 +54,13 @@ class LoginViewModel: LoginViewModelProtocol {
         loadingPublisher.onNext(type == .local)
         return worker.loginUser(type: type, userName: username.value!, password: password.value!)
             .asDriver(onErrorJustReturn: .error(globalDefaultError))
-            .do(onNext: {[weak self] _ in
+            .do(onNext: {[weak self] result in
+                switch result {
+                case .success:
+                    self?.loginSucceed.onNext(())
+                case .error:
+                    break
+                }
                 self?.loadingPublisher.onNext(false)
             })
     }

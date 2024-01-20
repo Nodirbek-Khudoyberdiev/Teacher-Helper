@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F70DF762B5C03D600B1FCAA /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF752B5C03D600B1FCAA /* MainScreenCoordinator.swift */; };
+		0FBCC2902B5B0D5A0068F767 /* ResourcesScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */; };
+		0FBCC2932B5B0D8E0068F767 /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */; };
+		0FBCC2952B5B0DE40068F767 /* MainScreenTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */; };
 		38090F26F846949B3F321572 /* Pods_Teacher_Helper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA3A5D2B3B8F62EB0101A3D /* Pods_Teacher_Helper.framework */; };
 		F70246D22B4606740077D2BE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70246D12B4606740077D2BE /* ChangePasswordVC.swift */; };
 		F70246D42B46068C0077D2BE /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70246D32B46068C0077D2BE /* ChangePasswordView.swift */; };
@@ -100,6 +104,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F70DF752B5C03D600B1FCAA /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
+		0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesScreenVC.swift; sourceTree = "<group>"; };
+		0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
+		0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTabbarController.swift; sourceTree = "<group>"; };
 		75F54CF10E0772E677A4D737 /* Pods-Teacher Helper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teacher Helper.release.xcconfig"; path = "Target Support Files/Pods-Teacher Helper/Pods-Teacher Helper.release.xcconfig"; sourceTree = "<group>"; };
 		AFA3A5D2B3B8F62EB0101A3D /* Pods_Teacher_Helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Teacher_Helper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB67FF36BBBC72207F1FA429 /* Pods-Teacher Helper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Teacher Helper.debug.xcconfig"; path = "Target Support Files/Pods-Teacher Helper/Pods-Teacher Helper.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +219,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FBCC28E2B5B0D360068F767 /* Main Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */,
+				0F70DF752B5C03D600B1FCAA /* MainScreenCoordinator.swift */,
+				0FBCC2912B5B0D780068F767 /* Resources Screen */,
+			);
+			path = "Main Screens";
+			sourceTree = "<group>";
+		};
+		0FBCC2912B5B0D780068F767 /* Resources Screen */ = {
+			isa = PBXGroup;
+			children = (
+				0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */,
+				0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */,
+			);
+			path = "Resources Screen";
+			sourceTree = "<group>";
+		};
 		969BA56D0E86D9E9803B8BF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				F71EE83A2B1E6B910034E10F /* BaseViewController.swift */,
+				0FBCC28E2B5B0D360068F767 /* Main Screens */,
 				F7A7FA462B20F9FD003D6C53 /* Auth */,
 				F789A7742B1C8AF9006FFAE4 /* LanguageChoose */,
 			);
@@ -716,6 +744,7 @@
 				F72544C72B24FE640004F056 /* UIImage + Ext.swift in Sources */,
 				F71DE0152B444EE40033E757 /* ForgotPasswordView.swift in Sources */,
 				F70246D82B460C5F0077D2BE /* ChangePasswordCoordinator.swift in Sources */,
+				0FBCC2932B5B0D8E0068F767 /* ResourceView.swift in Sources */,
 				F7C6C68B2B3729F800D56800 /* OtpView.swift in Sources */,
 				F7A7FA2F2B20E9FF003D6C53 /* UserDefaults + Ext.swift in Sources */,
 				F74A2C5B2B21A13700B231C0 /* PrimaryButton.swift in Sources */,
@@ -737,6 +766,7 @@
 				F7E4C6392B1FBD61004EB105 /* LaunguageChooseView.swift in Sources */,
 				F789A75D2B1C7370006FFAE4 /* SceneDelegate.swift in Sources */,
 				F70246DF2B4610300077D2BE /* PasswordChangedView.swift in Sources */,
+				0F70DF762B5C03D600B1FCAA /* MainScreenCoordinator.swift in Sources */,
 				F789A7762B1C92C5006FFAE4 /* ReactiveCoordinator.swift in Sources */,
 				F7A7FA582B2104C1003D6C53 /* PaddingLabel.swift in Sources */,
 				F7A7FA4E2B210086003D6C53 /* TitledTextField.swift in Sources */,
@@ -752,7 +782,9 @@
 				F70246D22B4606740077D2BE /* ChangePasswordVC.swift in Sources */,
 				F7E4C64D2B1FC162004EB105 /* BaseLabel.swift in Sources */,
 				F7A7FA522B2101F1003D6C53 /* LoginViewModel.swift in Sources */,
+				0FBCC2902B5B0D5A0068F767 /* ResourcesScreenVC.swift in Sources */,
 				F75524FB2B224D4600D5D8A5 /* AuthWorker.swift in Sources */,
+				0FBCC2952B5B0DE40068F767 /* MainScreenTabbarController.swift in Sources */,
 				F7A7FA542B210324003D6C53 /* UITextField + Ext.swift in Sources */,
 				F71EE82F2B1E5EEA0034E10F /* AuthEndpoint.swift in Sources */,
 			);

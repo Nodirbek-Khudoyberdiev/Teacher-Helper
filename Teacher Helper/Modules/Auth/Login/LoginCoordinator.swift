@@ -33,6 +33,14 @@ class LoginCoordinator: ReactiveCoordinator<Void> {
             .subscribe()
             .disposed(by: disposeBag)
         
+        viewController.viewModel
+            .loginSucceed
+            .flatMap({
+                self.openMainScreen()
+            })
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         rootViewController.navigationController?
             .pushViewController(viewController, animated: true)
         return Observable.empty()
@@ -46,6 +54,11 @@ class LoginCoordinator: ReactiveCoordinator<Void> {
     private func openForgotPassword() -> Observable<Void> {
         let forgotPasswordCoordinator = ForgotPasswordCoordinator(rootViewController: rootViewController)
         return coordinate(to: forgotPasswordCoordinator)
+    }
+    
+    private func openMainScreen() -> Observable<Void> {
+        let coordinator = MainScreenCoordinator(rootViewController: rootViewController)
+        return coordinate(to: coordinator)
     }
     
 }

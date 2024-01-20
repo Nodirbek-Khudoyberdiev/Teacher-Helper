@@ -17,13 +17,29 @@ class AppCoordinator: ReactiveCoordinator<Void> {
     
     override func start(_ di: DependencyContainerProtocol) -> Observable<Void> {
         
-        let navigationController = UINavigationController(rootViewController: LanguageChooseVC())
+        let coordinator = startBuilder()
         
-        let languageChooseCoordinator = LanguageChooseCoordinator(rootViewController: navigationController.viewControllers[0])
-        
-        window.rootViewController = navigationController
+        return coordinate(to: coordinator)
+    }
+    
+    private func startBuilder() -> ReactiveCoordinator<Void> {
+        var navVC: UINavigationController
+        var coordinator: ReactiveCoordinator<Void>
+        if UserDefaults.standard.getLocaleCode().isEmpty {
+            let vc = LanguageChooseVC()
+            navVC = UINavigationController(rootViewController: vc)
+            coordinator = LanguageChooseCoordinator(rootViewController: navVC.viewControllers[0])
+        } else if !KeychainStore.token.isEmptyOrNil {
+            let vc = DependencyContainer.shared.mainScreen()
+            navVC = UINavigationController(rootViewController: vc)
+            coordinator = MainScreenCoordinator(rootViewController: navVC)
+        } else {
+            let vc = DependencyContainer.shared.loginVC()
+            navVC = UINavigationController(rootViewController: vc)
+            coordinator = LoginCoordinator(rootViewController: navVC)
+        }
+        window.rootViewController = navVC
         window.makeKeyAndVisible()
-        
-        return coordinate(to: languageChooseCoordinator)
+        return coordinator
     }
 }
