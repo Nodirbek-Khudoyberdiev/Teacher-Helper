@@ -11,12 +11,45 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setControllers()
     }
     
     override func loadView() {
         super.loadView()
         view = mainView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func setControllers(){
+        let resourceBoughtVC = ResourceBoughtScreenVC()
+        self.addTabVC(resourceBoughtVC)
+        
+        let view2 = UIView()
+        view2.backgroundColor = .blue
+        
+        mainView().viewPager.tabbedView.tabs = [
+            AppTabItemView(title: "Купленные"),
+            AppTabItemView(title: "Все ресурсы")
+        ]
+        mainView().viewPager.pagedView.pages = [
+            resourceBoughtVC.view,
+            view2
+        ]
+    }
+    
+    private func addTabVC(_ vc: UIViewController){
+        self.addChild(vc)
+        self.didMove(toParent: vc)
     }
     
 }

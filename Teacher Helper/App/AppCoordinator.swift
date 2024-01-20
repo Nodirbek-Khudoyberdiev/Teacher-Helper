@@ -16,16 +16,15 @@ class AppCoordinator: ReactiveCoordinator<Void> {
     }
     
     override func start(_ di: DependencyContainerProtocol) -> Observable<Void> {
-        
+        UserDefaults.standard.clearKeychainIfWillUnistall()
         let coordinator = startBuilder()
-        
         return coordinate(to: coordinator)
     }
     
     private func startBuilder() -> ReactiveCoordinator<Void> {
         var navVC: UINavigationController
         var coordinator: ReactiveCoordinator<Void>
-        if UserDefaults.standard.getLocaleCode().isEmpty {
+        if !UserDefaults.standard.getLanguageSaved() {
             let vc = LanguageChooseVC()
             navVC = UINavigationController(rootViewController: vc)
             coordinator = LanguageChooseCoordinator(rootViewController: navVC.viewControllers[0])

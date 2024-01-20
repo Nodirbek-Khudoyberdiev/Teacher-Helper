@@ -35,6 +35,7 @@ class LoginCoordinator: ReactiveCoordinator<Void> {
         
         viewController.viewModel
             .loginSucceed
+            .observeOnMain()
             .flatMap({
                 self.openMainScreen()
             })

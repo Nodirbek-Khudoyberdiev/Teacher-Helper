@@ -17,7 +17,7 @@ class MainScreenCoordinator: ReactiveCoordinator<Void> {
     override func start(_ di: DependencyContainerProtocol = DependencyContainer.shared) -> Observable<Void> {
         let viewController = di.mainScreen()
         rootViewController.navigationController?
-            .pushViewController(viewController, animated: true)
+            .setViewControllers([viewController], animated: true)
         return Observable.never()
     }
 }

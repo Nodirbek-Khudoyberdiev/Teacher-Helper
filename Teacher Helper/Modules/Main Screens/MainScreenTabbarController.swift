@@ -41,12 +41,11 @@ class MainScreenTabbarController: UITabBarController {
         setViewControllers([homeNavVC, resourceNavVC, calendarNavVC], animated: true)
     }
 
-    private func createNav(with title: String, image: UIImage?, selectedImge: UIImage?, vc: UIViewController) -> UINavigationController {
-        let nav = UINavigationController(rootViewController: vc)
-        nav.tabBarItem.title = title
-        nav.tabBarItem.selectedImage = selectedImge
-        nav.tabBarItem.image = image
-        return nav
+    private func createNav(with title: String, image: UIImage?, selectedImge: UIImage?, vc: UIViewController) -> UIViewController {
+        vc.tabBarItem.title = title
+        vc.tabBarItem.selectedImage = selectedImge
+        vc.tabBarItem.image = image
+        return vc
     }
     
 }
