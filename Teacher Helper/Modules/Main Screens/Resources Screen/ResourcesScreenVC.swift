@@ -34,8 +34,8 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
         let resourceBoughtVC = ResourceBoughtScreenVC()
         self.addTabVC(resourceBoughtVC)
         
-        let view2 = UIView()
-        view2.backgroundColor = .blue
+        let resourcesAllVC = ResourcesAllVC()
+        self.addTabVC(resourcesAllVC)
         
         mainView().viewPager.tabbedView.tabs = [
             AppTabItemView(title: "Купленные"),
@@ -43,7 +43,7 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
         ]
         mainView().viewPager.pagedView.pages = [
             resourceBoughtVC.view,
-            view2
+            resourcesAllVC.view
         ]
     }
     

@@ -27,15 +27,15 @@ class AppCoordinator: ReactiveCoordinator<Void> {
         if !UserDefaults.standard.getLanguageSaved() {
             let vc = LanguageChooseVC()
             navVC = UINavigationController(rootViewController: vc)
-            coordinator = LanguageChooseCoordinator(rootViewController: navVC.viewControllers[0])
+            coordinator = LanguageChooseCoordinator(rootViewController: vc)
         } else if !KeychainStore.token.isEmptyOrNil {
             let vc = DependencyContainer.shared.mainScreen()
             navVC = UINavigationController(rootViewController: vc)
-            coordinator = MainScreenCoordinator(rootViewController: navVC)
+            coordinator = MainScreenCoordinator(rootViewController: vc)
         } else {
             let vc = DependencyContainer.shared.loginVC()
             navVC = UINavigationController(rootViewController: vc)
-            coordinator = LoginCoordinator(rootViewController: navVC)
+            coordinator = LoginCoordinator(rootViewController: vc)
         }
         window.rootViewController = navVC
         window.makeKeyAndVisible()

@@ -115,6 +115,7 @@ class SetupTableCell: UITableViewCell {
         guard let view = self as? BaseTableCell else {
             return
         }
+        view.selectionStyle = .none
         view.setup()
         view.setupConstrains()
     }

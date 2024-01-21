@@ -22,6 +22,9 @@
 		0F70DF992B5C588800B1FCAA /* ResourceBoughtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF982B5C588800B1FCAA /* ResourceBoughtView.swift */; };
 		0F70DF9C2B5C591400B1FCAA /* ResourceBoughtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF9B2B5C591400B1FCAA /* ResourceBoughtCell.swift */; };
 		0F70DF9E2B5C5C6300B1FCAA /* ResourcesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF9D2B5C5C6300B1FCAA /* ResourcesVM.swift */; };
+		0FB6BDD32B5D87CE009FD3D3 /* ResourceAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6BDD22B5D87CE009FD3D3 /* ResourceAllView.swift */; };
+		0FB6BDD52B5D8893009FD3D3 /* ResourceAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6BDD42B5D8893009FD3D3 /* ResourceAllCell.swift */; };
+		0FB6BDD82B5D8CD0009FD3D3 /* ResourcesAllVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6BDD72B5D8CD0009FD3D3 /* ResourcesAllVM.swift */; };
 		0FBCC2902B5B0D5A0068F767 /* ResourcesScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */; };
 		0FBCC2932B5B0D8E0068F767 /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */; };
 		0FBCC2952B5B0DE40068F767 /* MainScreenTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */; };
@@ -133,6 +136,9 @@
 		0F70DF982B5C588800B1FCAA /* ResourceBoughtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceBoughtView.swift; sourceTree = "<group>"; };
 		0F70DF9B2B5C591400B1FCAA /* ResourceBoughtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceBoughtCell.swift; sourceTree = "<group>"; };
 		0F70DF9D2B5C5C6300B1FCAA /* ResourcesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesVM.swift; sourceTree = "<group>"; };
+		0FB6BDD22B5D87CE009FD3D3 /* ResourceAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAllView.swift; sourceTree = "<group>"; };
+		0FB6BDD42B5D8893009FD3D3 /* ResourceAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAllCell.swift; sourceTree = "<group>"; };
+		0FB6BDD72B5D8CD0009FD3D3 /* ResourcesAllVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesAllVM.swift; sourceTree = "<group>"; };
 		0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesScreenVC.swift; sourceTree = "<group>"; };
 		0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTabbarController.swift; sourceTree = "<group>"; };
@@ -273,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				0F70DF962B5C551300B1FCAA /* ResourcesAllVC.swift */,
+				0FB6BDD72B5D8CD0009FD3D3 /* ResourcesAllVM.swift */,
+				0FB6BDD62B5D8897009FD3D3 /* Views */,
 			);
 			path = ResourcesAll;
 			sourceTree = "<group>";
@@ -282,6 +290,15 @@
 			children = (
 				0F70DF982B5C588800B1FCAA /* ResourceBoughtView.swift */,
 				0F70DF9B2B5C591400B1FCAA /* ResourceBoughtCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0FB6BDD62B5D8897009FD3D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FB6BDD22B5D87CE009FD3D3 /* ResourceAllView.swift */,
+				0FB6BDD42B5D8893009FD3D3 /* ResourceAllCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -792,6 +809,7 @@
 				F7E4C6512B1FC2B8004EB105 /* UIView + Ext.swift in Sources */,
 				F70246DD2B46101E0077D2BE /* PasswordChangedVC.swift in Sources */,
 				F789A75F2B1C7370006FFAE4 /* LanguageChooseVC.swift in Sources */,
+				0FB6BDD32B5D87CE009FD3D3 /* ResourceAllView.swift in Sources */,
 				F7A7FA482B20FA07003D6C53 /* RegisterVC.swift in Sources */,
 				F7A7FA3C2B20F1B8003D6C53 /* AppCoordinator.swift in Sources */,
 				F71DE0172B444F440033E757 /* ForgotPasswordCoordinator.swift in Sources */,
@@ -816,6 +834,7 @@
 				F74E33332B2366AA00F39BD2 /* ViewModelFactory.swift in Sources */,
 				F7A7FA452B20F4B7003D6C53 /* LoginView.swift in Sources */,
 				F70246D62B46073D0077D2BE /* ChangePasswordViewModel.swift in Sources */,
+				0FB6BDD52B5D8893009FD3D3 /* ResourceAllCell.swift in Sources */,
 				F71EE8332B1E62400034E10F /* Endpoint.swift in Sources */,
 				F7A7FA432B20F4A4003D6C53 /* LoginVC.swift in Sources */,
 				F7E4C6402B1FBF7C004EB105 /* Fonts.swift in Sources */,
@@ -838,6 +857,7 @@
 				F7A7FA3A2B20F122003D6C53 /* LanguageChooseCoordinator.swift in Sources */,
 				F7C6C6912B373BC700D56800 /* OtpNumberView.swift in Sources */,
 				F71DE0192B4481150033E757 /* ForgotPasswordViewModel.swift in Sources */,
+				0FB6BDD82B5D8CD0009FD3D3 /* ResourcesAllVM.swift in Sources */,
 				0F70DF862B5C2EAC00B1FCAA /* ViewPager.swift in Sources */,
 				F71EE8392B1E657B0034E10F /* LoginResponse.swift in Sources */,
 				F7E4C6352B1FBC45004EB105 /* ViewSpecificController.swift in Sources */,
