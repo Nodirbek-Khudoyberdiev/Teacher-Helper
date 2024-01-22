@@ -10,8 +10,8 @@ import UIKit
 class ResourceBoughtScreenVC: BaseViewController<ResourceBoughtView> {
     
     let courseVM: [ResourcesVM] = [
-        .init(courseTitle: "Алгебра", courseQuarter: "2 четверть", courseImage: UIImage(named: "Algebra")),
-        .init(courseTitle: "Геометрия", courseQuarter: "2 четверть", courseImage: UIImage(named: "Geometry")),
+        .init(courseTitle: "Алгебра", courseQuarter: "2 четверть", courseImage: .algebraImage),
+        .init(courseTitle: "Геометрия", courseQuarter: "2 четверть", courseImage: .geometryImage),
     ]
     
     override func viewDidLoad() {

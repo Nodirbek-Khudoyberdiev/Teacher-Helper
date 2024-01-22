@@ -37,7 +37,7 @@ class ResourceBoughtCell: BaseTableCell {
     lazy var courseMoreImageView = UIImageView()
     
     func setup() {
-        courseMoreImageView.image = UIImage(named: "dots-vertical")
+        courseMoreImageView.image = .dotsVertical
         courseMoreImageView.clipsToBounds = true
         selectionStyle = .none
         contentView.addSubview(containerView)

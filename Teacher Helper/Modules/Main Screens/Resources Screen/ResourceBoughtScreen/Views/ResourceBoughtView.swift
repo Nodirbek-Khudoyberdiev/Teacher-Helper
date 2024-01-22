@@ -13,7 +13,7 @@ class ResourceBoughtView: BaseView {
     
     lazy var plusButton: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "plus")
+        imageView.image = .plusImage
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
