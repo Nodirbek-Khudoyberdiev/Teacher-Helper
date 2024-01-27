@@ -13,4 +13,5 @@ protocol ViewModelFactory {
     func otpViewModel(userName: String) -> OtpViewModelProtocol
     func forgotPasswordViewModel() -> ForgotPasswordViewModelProtocol
     func changePasswordViewModel() -> ChangePasswordViewModelProtocol
+    func resourcesAllViewModel() -> ResourcesAllViewModelProtocol
 }

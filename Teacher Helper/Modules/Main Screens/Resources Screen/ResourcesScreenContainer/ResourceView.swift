@@ -8,6 +8,13 @@
 import UIKit
 
 final class ResourceView: BaseView {
+    
+    lazy var viewPager: ViewPager = {
+        let viewPager = ViewPager(
+            tabSizeConfiguration: .fillEqually(height: 48, spacing: 0)
+        )
+        return viewPager
+    }()
 
     func setup() {
         addSubview(viewPager)
@@ -20,12 +27,5 @@ final class ResourceView: BaseView {
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
     }
-    
-    lazy var viewPager: ViewPager = {
-        let viewPager = ViewPager(
-            tabSizeConfiguration: .fillEqually(height: 48, spacing: 0)
-        )
-        return viewPager
-    }()
     
 }

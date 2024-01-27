@@ -30,7 +30,7 @@ class ResourceAllCell: BaseTableCell {
     
     lazy var arrowRightImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .arrowRight
+        imageView.image = .arrowRightImage
         imageView.clipsToBounds = true
         return imageView
     }()

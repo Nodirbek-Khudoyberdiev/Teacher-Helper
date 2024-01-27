@@ -21,6 +21,7 @@ final class DependencyContainer: DependencyContainerProtocol {
     
     lazy var networkClient: APIClientProtocol = APIClient()
     lazy var authService: AuthServiceProtocol = AuthService(networking: networkClient)
+    lazy var resourcesService: ResourcesServiceProtocol = ResourcesService(networking: networkClient)
 }
 
 // MARK: ViewController DI
@@ -56,6 +57,15 @@ extension DependencyContainer {
         return vc
     }
     
+    func subjectDetailScreen() -> SubjectDetailVC {
+        let vc = SubjectDetailVC()
+        return vc
+    }
+    
+    func resourcesScreen() -> ResourcesScreenVC {
+        return ResourcesScreenVC()
+    }
+    
 }
 
 // MARK: Workers DI
@@ -64,6 +74,11 @@ extension DependencyContainer {
     
     func authWorker() -> AuthWorkerProtocol {
         return AuthWorker(authService: authService)
+    }
+    
+    func resourcesWorker() -> ResourcesWorkerProtocol {
+        let worker = ResourcesWorker(resourcesService: resourcesService)
+        return worker
     }
     
 }
@@ -91,6 +106,11 @@ extension DependencyContainer {
     
     func changePasswordViewModel() -> ChangePasswordViewModelProtocol {
         let viewModel: ChangePasswordViewModelProtocol = ChangePasswordViewModel(authWorker: authWorker())
+        return viewModel
+    }
+    
+    func resourcesAllViewModel() -> ResourcesAllViewModelProtocol {
+        let viewModel = ResourcesAllViewModel(worker: resourcesWorker())
         return viewModel
     }
     

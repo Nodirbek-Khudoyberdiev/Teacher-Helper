@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
 
 class ResourceBoughtScreenVC: BaseViewController<ResourceBoughtView> {
+    
+    let didSelectSubject = PublishSubject<Void>()
     
     let courseVM: [ResourcesVM] = [
         .init(courseTitle: "Алгебра", courseQuarter: "2 четверть", courseImage: .algebraImage),
@@ -41,6 +45,10 @@ extension ResourceBoughtScreenVC: UITableViewDelegate, UITableViewDataSource {
         let cell: ResourceBoughtCell = tableView.dequeueCell(for: indexPath)
         cell.setup(courseVM[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectSubject.onNext(())
     }
     
 }

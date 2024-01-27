@@ -12,7 +12,7 @@ class OtpView: BaseView {
     lazy var clockImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = .clock
+        imageView.image = .clockImage
         imageView.snp.makeConstraints({
             $0.size.equalTo(24)
         })
@@ -68,7 +68,7 @@ class OtpView: BaseView {
     lazy var retryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = .refresh
+        imageView.image = .refreshImage
         imageView.snp.makeConstraints { make in
             make.size.equalTo(20)
         }

@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
 
 class ResourcesScreenVC: BaseViewController<ResourceView> {
+    
+    let didSelectSubject = PublishSubject<Void>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +36,18 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
     
     private func setControllers(){
         let resourceBoughtVC = ResourceBoughtScreenVC()
+        resourceBoughtVC.didSelectSubject
+            .bind(to: didSelectSubject)
+            .disposed(by: bag)
+        
         self.addTabVC(resourceBoughtVC)
         
-        let resourcesAllVC = ResourcesAllVC()
+        let viewModel = DependencyContainer.shared.resourcesAllViewModel()
+        let resourcesAllVC = ResourcesAllVC(viewModel: viewModel)
+        resourcesAllVC.didSelectSubject
+            .bind(to: didSelectSubject)
+            .disposed(by: bag)
+        
         self.addTabVC(resourcesAllVC)
         
         mainView().viewPager.tabbedView.tabs = [
@@ -45,11 +58,6 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
             resourceBoughtVC.view,
             resourcesAllVC.view
         ]
-    }
-    
-    private func addTabVC(_ vc: UIViewController){
-        self.addChild(vc)
-        self.didMove(toParent: vc)
     }
     
 }

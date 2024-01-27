@@ -6,18 +6,23 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class MainScreenTabbarController: UITabBarController {
-
+    
+    let bag = DisposeBag()
+    var coodinators: [ReactiveCoordinator<Void>] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabs()
+        configureSelection()
     }
     
     private func setTabs(){
-        let resourceVC = ResourcesScreenVC()
-        let resourceNavVC = createNav(with: "Ресурсы", image: .resourcesBookOpen, selectedImge: .resourcesBookOpenSelected, vc: resourceVC)
-        
+        let resourceCoordinator = ResourcesScreenCoordinator(tabbarViewController: self)
+        self.coodinators.append(resourceCoordinator)
         
         let homeVC = UIViewController()
         homeVC.view.backgroundColor = .white
@@ -28,16 +33,22 @@ class MainScreenTabbarController: UITabBarController {
         calendarVC.view.backgroundColor = .white
         let calendarNavVC = createNav(with: "Главная", image: .calendarImage, selectedImge: .calendarSelectedImage, vc: calendarVC)
         
-        setViewControllers([homeNavVC, resourceNavVC, calendarNavVC], animated: true)
+        setViewControllers([homeVC, resourceCoordinator.vc, calendarVC], animated: true)
     }
-
-    private func createNav(with title: String, image: UIImage?, selectedImge: UIImage?, vc: UIViewController) -> UIViewController {
-        vc.tabBarItem.title = title
-        vc.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.Gray._300], for: .normal)
-        vc.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.appPrimaryColor], for: .selected)
-        vc.tabBarItem.selectedImage = selectedImge
-        vc.tabBarItem.image = image
-        return vc
+    
+    func configureSelection(){
+        rx.didSelect
+            .map({ selectedViewController -> Int in
+                guard let index = self.viewControllers?.firstIndex(of: selectedViewController) else {
+                    fatalError()
+                }
+                return index
+            })
+            .flatMap({ index in
+                self.coodinators[0].start()
+            })
+            .subscribe()
+            .disposed(by: bag)
     }
     
 }

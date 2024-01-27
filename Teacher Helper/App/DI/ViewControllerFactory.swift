@@ -18,4 +18,6 @@ protocol ViewControllerFactory {
     
     // MARK: MainScreen VC
     func mainScreen() -> MainScreenTabbarController
+    func subjectDetailScreen() -> SubjectDetailVC
+    func resourcesScreen() -> ResourcesScreenVC
 }

@@ -6,23 +6,51 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
 
 class ResourcesAllVC: BaseViewController<ResourceAllView> {
     
-    let resourcesAllVM: [ResourcesAllVM] = [
-        .init(courseName: "Алгебра", courseClasses: "5-11 классы"),
-        .init(courseName: "Геометря", courseClasses: "5-11 классы")
-    ]
+    let didSelectSubject = PublishSubject<Void>()
+    
+    private var resourcesAllVM: [ResourcesAllVM] = []
+    
+    let viewModel: ResourcesAllViewModelProtocol
+    
+    init(viewModel: ResourcesAllViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView().delegate = self
-        mainView().dataSource = self
+        setupDelegates()
+        bindResources()
     }
     
     override func loadView() {
         super.loadView()
         view = mainView()
+    }
+    
+    private func setupDelegates(){
+        mainView().delegate = self
+        mainView().dataSource = self
+    }
+    
+    private func bindResources(){
+        viewModel.resources
+            .observeOnMain()
+            .subscribe(onNext: {[weak self] resources in
+                self?.resourcesAllVM = resources
+                self?.mainView().activityIndicator.stopAnimating()
+                self?.mainView().reloadData()
+            })
+            .disposed(by: bag)
     }
     
 }
@@ -36,6 +64,10 @@ extension ResourcesAllVC: UITableViewDelegate, UITableViewDataSource {
         let cell: ResourceAllCell = tableView.dequeueCell(for: indexPath)
         cell.setup(with: resourcesAllVM[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectSubject.onNext(())
     }
     
 }

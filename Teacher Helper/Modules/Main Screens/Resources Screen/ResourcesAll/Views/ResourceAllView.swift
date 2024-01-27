@@ -9,6 +9,13 @@ import UIKit
 
 class ResourceAllView: UITableView {
     
+    lazy var activityIndicator: ActivityIndicator = {
+        let activityIndicator = ActivityIndicator()
+        activityIndicator.style = .large
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         setup()
@@ -25,6 +32,12 @@ class ResourceAllView: UITableView {
         backgroundColor = .white
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        addSubview(activityIndicator)
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
     }
     
 }
