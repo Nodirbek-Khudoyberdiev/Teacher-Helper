@@ -9,7 +9,7 @@ import UIKit
 
 extension UIViewController {
     
-    func addTabVC(_ vc: UIViewController){
+    func addChildVC(_ vc: UIViewController){
         self.addChild(vc)
         self.didMove(toParent: vc)
     }

@@ -40,7 +40,7 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
 //            .bind(to: didSelectSubject)
 //            .disposed(by: bag)
         
-        self.addTabVC(resourceBoughtVC)
+        self.addChildVC(resourceBoughtVC)
         
         
         let resourcesAllVC = DependencyContainer.shared.resourceAllVC()
@@ -48,7 +48,7 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
             .bind(to: didSelectAllSubject)
             .disposed(by: bag)
         
-        self.addTabVC(resourcesAllVC)
+        self.addChildVC(resourcesAllVC)
         
         mainView().viewPager.tabbedView.tabs = [
             AppTabItemView(title: "Купленные"),
