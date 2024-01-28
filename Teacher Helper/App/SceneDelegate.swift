@@ -29,10 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = .black
-//        navigationBarAppearace.barTintColor = Theme.background
         navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        navigationBarAppearace.shadowImage = UIImage()
-        navigationBarAppearace.setBackgroundImage(UIImage(), for: .default)
+//        navigationBarAppearace.shadowImage = UIImage()
+//        navigationBarAppearace.setBackgroundImage(UIImage(), for: .default)
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)

@@ -11,7 +11,7 @@ class PasswordChangedView: BaseView {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "changedIcon")
+        imageView.image = .successImage
         imageView.clipsToBounds = true
         return imageView
     }()

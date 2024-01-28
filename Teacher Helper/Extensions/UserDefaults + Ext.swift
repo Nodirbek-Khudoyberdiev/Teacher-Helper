@@ -10,12 +10,23 @@ import Foundation
 extension UserDefaults {
     enum Keys {
         static let localeCode = "locale_code"
+        static let languageSaved = "languageSaved"
+        static let alreadyInstalled = "alreadyInstalled"
     }
 }
 
 extension UserDefaults {
     
+    func setLanguageSaved(_ value: Bool) {
+        setValue(value, forKey: Keys.languageSaved)
+    }
+    
+    func getLanguageSaved() -> Bool {
+        return bool(forKey: Keys.languageSaved)
+    }
+    
     func saveLocaleCode(languageCode: Localization) {
+        setLanguageSaved(true)
         setValue(languageCode.rawValue, forKey: Keys.localeCode)
     }
     
@@ -34,5 +45,13 @@ extension UserDefaults {
             }
         }
         return Localization.ENGLISH.rawValue
+    }
+    
+    func clearKeychainIfWillUnistall() {
+        let freshInstall = !bool(forKey: Keys.alreadyInstalled)
+        if freshInstall {
+            KeychainStore.clearKeychain()
+            set(true, forKey: Keys.alreadyInstalled)
+        }
     }
 }

@@ -34,9 +34,12 @@ extension UIColor {
     }
     
     struct Main {
+        static let _300 = UIColor(hex: "58D5D3")
         static let _500 = UIColor(hex: "26A2A6")
+        static let _600 = UIColor(hex: "1C7F85")
         static let _400 = UIColor(hex: "40BFC1")
         static let _200 = UIColor(hex: "A3ECE8")
+        static let _50 = UIColor(hex: "F1FCFB")
     }
 
     struct Error {
@@ -50,6 +53,7 @@ extension UIColor {
         static let _200 = UIColor(hex: "EAECF0")
         static let _600 = UIColor(hex: "475467")
         static let _900 = UIColor(hex: "101828")
+        static let _400 = UIColor(hex: "888888")
     }
     
     
