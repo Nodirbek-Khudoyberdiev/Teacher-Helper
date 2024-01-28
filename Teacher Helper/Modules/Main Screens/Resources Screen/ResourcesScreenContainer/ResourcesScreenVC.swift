@@ -11,7 +11,7 @@ import RxRelay
 
 class ResourcesScreenVC: BaseViewController<ResourceView> {
     
-    let didSelectSubject = PublishSubject<Void>()
+    let didSelectAllSubject = PublishSubject<ResourcesAllVM>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +36,16 @@ class ResourcesScreenVC: BaseViewController<ResourceView> {
     
     private func setControllers(){
         let resourceBoughtVC = ResourceBoughtScreenVC()
-        resourceBoughtVC.didSelectSubject
-            .bind(to: didSelectSubject)
-            .disposed(by: bag)
+//        resourceBoughtVC.didSelectSubject
+//            .bind(to: didSelectSubject)
+//            .disposed(by: bag)
         
         self.addTabVC(resourceBoughtVC)
         
-        let viewModel = DependencyContainer.shared.resourcesAllViewModel()
-        let resourcesAllVC = ResourcesAllVC(viewModel: viewModel)
+        
+        let resourcesAllVC = DependencyContainer.shared.resourceAllVC()
         resourcesAllVC.didSelectSubject
-            .bind(to: didSelectSubject)
+            .bind(to: didSelectAllSubject)
             .disposed(by: bag)
         
         self.addTabVC(resourcesAllVC)

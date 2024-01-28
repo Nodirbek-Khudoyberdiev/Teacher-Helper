@@ -32,6 +32,7 @@ class ResourceAllView: UITableView {
         backgroundColor = .white
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        register(ResourceAllCell.self, forCellReuseIdentifier: ResourceAllCell.reuseID)
         addSubview(activityIndicator)
         
         activityIndicator.snp.makeConstraints { make in

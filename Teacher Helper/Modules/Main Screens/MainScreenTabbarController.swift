@@ -21,7 +21,8 @@ class MainScreenTabbarController: UITabBarController {
     }
     
     private func setTabs(){
-        let resourceCoordinator = ResourcesScreenCoordinator(tabbarViewController: self)
+        let resourceCoordinator = ResourcesScreenCoordinator()
+        let resourceNavVC = createNav(with: "Ресурсы", image: .resourcesBookOpen, selectedImge: .resourcesBookOpenSelected, vc: resourceCoordinator.vc)
         self.coodinators.append(resourceCoordinator)
         
         let homeVC = UIViewController()
@@ -33,22 +34,15 @@ class MainScreenTabbarController: UITabBarController {
         calendarVC.view.backgroundColor = .white
         let calendarNavVC = createNav(with: "Главная", image: .calendarImage, selectedImge: .calendarSelectedImage, vc: calendarVC)
         
-        setViewControllers([homeVC, resourceCoordinator.vc, calendarVC], animated: true)
+        setViewControllers([homeNavVC, resourceNavVC, calendarNavVC], animated: true)
     }
     
     func configureSelection(){
-        rx.didSelect
-            .map({ selectedViewController -> Int in
-                guard let index = self.viewControllers?.firstIndex(of: selectedViewController) else {
-                    fatalError()
-                }
-                return index
-            })
-            .flatMap({ index in
-                self.coodinators[0].start()
-            })
-            .subscribe()
-            .disposed(by: bag)
+        self.coodinators.forEach({
+            $0.start()
+                .subscribe()
+                .disposed(by: bag)
+        })
     }
     
 }

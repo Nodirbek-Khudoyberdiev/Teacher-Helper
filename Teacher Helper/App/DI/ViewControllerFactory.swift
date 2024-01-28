@@ -20,4 +20,5 @@ protocol ViewControllerFactory {
     func mainScreen() -> MainScreenTabbarController
     func subjectDetailScreen() -> SubjectDetailVC
     func resourcesScreen() -> ResourcesScreenVC
+    func resourceAllVC() -> ResourcesAllVC
 }

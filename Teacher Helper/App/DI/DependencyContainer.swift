@@ -66,6 +66,10 @@ extension DependencyContainer {
         return ResourcesScreenVC()
     }
     
+    func resourceAllVC() -> ResourcesAllVC {
+        return ResourcesAllVC(viewModel: resourcesAllViewModel())
+    }
+    
 }
 
 // MARK: Workers DI

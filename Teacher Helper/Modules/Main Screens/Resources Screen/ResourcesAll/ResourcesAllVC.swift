@@ -7,11 +7,11 @@
 
 import UIKit
 import RxSwift
-import RxRelay
+import RxCocoa
 
 class ResourcesAllVC: BaseViewController<ResourceAllView> {
     
-    let didSelectSubject = PublishSubject<Void>()
+    let didSelectSubject = PublishSubject<ResourcesAllVM>()
     
     private var resourcesAllVM: [ResourcesAllVM] = []
     
@@ -28,7 +28,6 @@ class ResourcesAllVC: BaseViewController<ResourceAllView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDelegates()
         bindResources()
     }
     
@@ -36,38 +35,24 @@ class ResourcesAllVC: BaseViewController<ResourceAllView> {
         super.loadView()
         view = mainView()
     }
-    
-    private func setupDelegates(){
-        mainView().delegate = self
-        mainView().dataSource = self
-    }
+
     
     private func bindResources(){
         viewModel.resources
             .observeOnMain()
-            .subscribe(onNext: {[weak self] resources in
-                self?.resourcesAllVM = resources
-                self?.mainView().activityIndicator.stopAnimating()
-                self?.mainView().reloadData()
+            .do(onNext: { _ in
+                self.mainView().activityIndicator.stopAnimating()
             })
+            .bind(to: mainView().rx.items(cellIdentifier: ResourceAllCell.reuseID, cellType: ResourceAllCell.self)) { (_, item,cell) in
+                cell.setup(with: item)
+            }
             .disposed(by: bag)
+        
+        mainView().rx.modelSelected(ResourcesAllVM.self)
+            .bind(to: didSelectSubject)
+            .disposed(by: bag)
+        
     }
     
 }
 
-extension ResourcesAllVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resourcesAllVM.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ResourceAllCell = tableView.dequeueCell(for: indexPath)
-        cell.setup(with: resourcesAllVM[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectSubject.onNext(())
-    }
-    
-}
