@@ -25,10 +25,8 @@ class MainScreenTabbarController: UITabBarController {
         let resourceNavVC = createNav(with: "Ресурсы", image: .resourcesBookOpen, selectedImge: .resourcesBookOpenSelected, vc: resourceCoordinator.vc)
         self.coodinators.append(resourceCoordinator)
         
-        let homeVC = UIViewController()
-        homeVC.view.backgroundColor = .white
+        let homeVC = MainViewController()
         let homeNavVC = createNav(with: "Главная", image: .homeImage, selectedImge: .homeSelectedImage, vc: homeVC)
-        
         
         let calendarVC = UIViewController()
         calendarVC.view.backgroundColor = .white

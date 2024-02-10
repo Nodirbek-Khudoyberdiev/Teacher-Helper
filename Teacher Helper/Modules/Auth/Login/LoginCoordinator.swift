@@ -58,6 +58,7 @@ class LoginCoordinator: ReactiveCoordinator<Void> {
     }
     
     private func openMainScreen() -> Observable<Void> {
+        rootViewController.navigationController?.setNavigationBarHidden(true, animated: false)
         let coordinator = MainScreenCoordinator(rootViewController: rootViewController)
         return coordinate(to: coordinator)
     }
