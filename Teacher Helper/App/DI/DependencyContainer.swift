@@ -28,6 +28,10 @@ final class DependencyContainer: DependencyContainerProtocol {
 
 extension DependencyContainer {
     
+    func resourceBoughtVC() -> ResourceBoughtScreenVC {
+        return ResourceBoughtScreenVC()
+    }
+    
     func loginVC() -> LoginVC {
         let vc = LoginVC(viewModel: loginViewModel())
         return vc

@@ -38,6 +38,7 @@ class SubjectDetailCell: BaseTableCell {
     }
     
     func setup() {
+        backgroundColor = .white
         contentView.addSubviews(gradeView, subjectDetailLabel, themesLabel)
     }
     

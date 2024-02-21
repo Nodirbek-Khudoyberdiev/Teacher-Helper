@@ -11,16 +11,38 @@ import RxSwift
 
 class MainScreenTabbarController: UITabBarController {
     
-    let bag = DisposeBag()
-    var coodinators: [ReactiveCoordinator<Void>] = []
+    private let bag = DisposeBag()
+    private var coodinators: [ReactiveCoordinator<Void>] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabs()
         configureSelection()
+        setup()
     }
     
-    private func setTabs(){
+}
+
+private extension MainScreenTabbarController {
+    func setup(){
+        // bug was in ipad, so that is why this was added
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let items = tabBar.items {
+                // Setting the title text color of all tab bar items:
+                for item in items {
+                    item.setTitleTextAttributes([.foregroundColor: UIColor.appPrimaryColor], for: .selected)
+                    item.setTitleTextAttributes([.foregroundColor: UIColor.Gray._300], for: .normal)
+                }
+            }
+        } else {
+            let appearance = UITabBarAppearance()
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appPrimaryColor]
+            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Gray._300]
+            tabBar.standardAppearance = appearance
+        }
+    }
+    
+    func setTabs(){
         let resourceCoordinator = ResourcesScreenCoordinator()
         let resourceNavVC = createNav(with: "Ресурсы", image: .resourcesBookOpen, selectedImge: .resourcesBookOpenSelected, vc: resourceCoordinator.vc)
         self.coodinators.append(resourceCoordinator)
@@ -42,5 +64,4 @@ class MainScreenTabbarController: UITabBarController {
                 .disposed(by: bag)
         })
     }
-    
 }

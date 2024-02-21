@@ -58,16 +58,21 @@ class TopAlertView: UIView {
         timer?.invalidate()
         window.addSubview(self)
         titleLabel.text = title
-        UIView.animate(withDuration: animationDuration){
-            let window = UIApplication.shared.windows.first
-            let topPadding = window?.safeAreaInsets.top ?? 0.0
-            let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: topPadding + 33)
-            self.frame = frame
-            self.layoutIfNeeded()
+
+        if let topController = UIApplication.topViewController() {
+            let topBarHeight = topController.topbarHeight
+            UIView.animate(withDuration: animationDuration){
+                let window = UIApplication.shared.windows.first
+                let topPadding = window?.safeAreaInsets.top ?? 0.0
+                let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: topBarHeight + topPadding)
+                self.frame = frame
+                self.layoutIfNeeded()
+            }
+            timer = Timer.scheduledTimer(withTimeInterval: showDuration, repeats: false) { [weak self] timer in
+                self?.hideAlert()
+            }
         }
-        timer = Timer.scheduledTimer(withTimeInterval: showDuration, repeats: false) { [weak self] timer in
-            self?.hideAlert()
-        }
+       
     }
     
     private func addSwipeGesture() {

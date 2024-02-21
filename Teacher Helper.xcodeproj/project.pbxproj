@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F5AC56C2B7D31FD009E5885 /* UIApplication + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5AC56B2B7D31FD009E5885 /* UIApplication + Ext.swift */; };
 		0F70DF762B5C03D600B1FCAA /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF752B5C03D600B1FCAA /* MainScreenCoordinator.swift */; };
 		0F70DF852B5C2EAC00B1FCAA /* PageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF802B5C2EAC00B1FCAA /* PageCollectionViewCell.swift */; };
 		0F70DF862B5C2EAC00B1FCAA /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70DF812B5C2EAC00B1FCAA /* ViewPager.swift */; };
@@ -35,12 +36,17 @@
 		0FA08A312B659CBD0073D5F4 /* ResourcesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA08A302B659CBD0073D5F4 /* ResourcesService.swift */; };
 		0FA08A332B659D650073D5F4 /* ResourcesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA08A322B659D650073D5F4 /* ResourcesWorker.swift */; };
 		0FA08A352B65A57C0073D5F4 /* ResourcesAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA08A342B65A57C0073D5F4 /* ResourcesAllViewModel.swift */; };
+		0FAD2BA02B867DAC00E73106 /* LessonScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD2B9F2B867DAC00E73106 /* LessonScheduleHeaderView.swift */; };
 		0FB6BDD32B5D87CE009FD3D3 /* ResourceAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6BDD22B5D87CE009FD3D3 /* ResourceAllView.swift */; };
 		0FB6BDD52B5D8893009FD3D3 /* ResourceAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6BDD42B5D8893009FD3D3 /* ResourceAllCell.swift */; };
 		0FB6BDD82B5D8CD0009FD3D3 /* ResourcesAllVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6BDD72B5D8CD0009FD3D3 /* ResourcesAllVM.swift */; };
 		0FBCC2902B5B0D5A0068F767 /* ResourcesScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */; };
 		0FBCC2932B5B0D8E0068F767 /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */; };
 		0FBCC2952B5B0DE40068F767 /* MainScreenTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */; };
+		0FC1E4DF2B822FB50067B70D /* LessonDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E4DE2B822FB50067B70D /* LessonDetailTableCell.swift */; };
+		0FC1E4E12B827AFC0067B70D /* LessonDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E4E02B827AFC0067B70D /* LessonDetailVM.swift */; };
+		0FC1E4E32B827D4B0067B70D /* Int + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E4E22B827D4B0067B70D /* Int + Ext.swift */; };
+		0FC1E4E52B827F920067B70D /* LessonDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E4E42B827F910067B70D /* LessonDetailCollectionCell.swift */; };
 		0FD8B0102B78082300E27230 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD8B00F2B78082300E27230 /* MainViewController.swift */; };
 		0FD8B0122B78083C00E27230 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD8B0112B78083C00E27230 /* MainView.swift */; };
 		0FD8B0152B780FB400E27230 /* LessonSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD8B0142B780FB400E27230 /* LessonSchedulesViewController.swift */; };
@@ -138,6 +144,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F5AC56B2B7D31FD009E5885 /* UIApplication + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Ext.swift"; sourceTree = "<group>"; };
 		0F70DF752B5C03D600B1FCAA /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
 		0F70DF802B5C2EAC00B1FCAA /* PageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F70DF812B5C2EAC00B1FCAA /* ViewPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
@@ -166,12 +173,17 @@
 		0FA08A302B659CBD0073D5F4 /* ResourcesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesService.swift; sourceTree = "<group>"; };
 		0FA08A322B659D650073D5F4 /* ResourcesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesWorker.swift; sourceTree = "<group>"; };
 		0FA08A342B65A57C0073D5F4 /* ResourcesAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesAllViewModel.swift; sourceTree = "<group>"; };
+		0FAD2B9F2B867DAC00E73106 /* LessonScheduleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonScheduleHeaderView.swift; sourceTree = "<group>"; };
 		0FB6BDD22B5D87CE009FD3D3 /* ResourceAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAllView.swift; sourceTree = "<group>"; };
 		0FB6BDD42B5D8893009FD3D3 /* ResourceAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAllCell.swift; sourceTree = "<group>"; };
 		0FB6BDD72B5D8CD0009FD3D3 /* ResourcesAllVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesAllVM.swift; sourceTree = "<group>"; };
 		0FBCC28F2B5B0D5A0068F767 /* ResourcesScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesScreenVC.swift; sourceTree = "<group>"; };
 		0FBCC2922B5B0D8E0068F767 /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		0FBCC2942B5B0DE40068F767 /* MainScreenTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTabbarController.swift; sourceTree = "<group>"; };
+		0FC1E4DE2B822FB50067B70D /* LessonDetailTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailTableCell.swift; sourceTree = "<group>"; };
+		0FC1E4E02B827AFC0067B70D /* LessonDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailVM.swift; sourceTree = "<group>"; };
+		0FC1E4E22B827D4B0067B70D /* Int + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int + Ext.swift"; sourceTree = "<group>"; };
+		0FC1E4E42B827F910067B70D /* LessonDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailCollectionCell.swift; sourceTree = "<group>"; };
 		0FD8B00F2B78082300E27230 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0FD8B0112B78083C00E27230 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0FD8B0142B780FB400E27230 /* LessonSchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSchedulesViewController.swift; sourceTree = "<group>"; };
@@ -390,6 +402,17 @@
 			path = "Resources Screen";
 			sourceTree = "<group>";
 		};
+		0FC1E4DD2B822FAC0067B70D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FD8B0162B780FCB00E27230 /* LessonSchedulesView.swift */,
+				0FC1E4E42B827F910067B70D /* LessonDetailCollectionCell.swift */,
+				0FC1E4DE2B822FB50067B70D /* LessonDetailTableCell.swift */,
+				0FAD2B9F2B867DAC00E73106 /* LessonScheduleHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0FD8B00D2B78080700E27230 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,7 +436,8 @@
 			isa = PBXGroup;
 			children = (
 				0FD8B0142B780FB400E27230 /* LessonSchedulesViewController.swift */,
-				0FD8B0162B780FCB00E27230 /* LessonSchedulesView.swift */,
+				0FC1E4E02B827AFC0067B70D /* LessonDetailVM.swift */,
+				0FC1E4DD2B822FAC0067B70D /* Views */,
 			);
 			path = "Lesson Schedules";
 			sourceTree = "<group>";
@@ -593,9 +617,11 @@
 				F7E4C64E2B1FC1EF004EB105 /* UIColor + Ext.swift */,
 				F7E4C6502B1FC2B8004EB105 /* UIView + Ext.swift */,
 				0FA08A182B6520570073D5F4 /* UIViewController + Ext.swift */,
+				0F5AC56B2B7D31FD009E5885 /* UIApplication + Ext.swift */,
 				0FA08A2A2B6538340073D5F4 /* UITabbarController + Ext.swift */,
 				F7A7FA4F2B210106003D6C53 /* UILabel + Ext.swift */,
 				F7A7FA262B20E1C5003D6C53 /* UIStackView + Ext.swift */,
+				0FC1E4E22B827D4B0067B70D /* Int + Ext.swift */,
 				F7A7FA2C2B20E9DB003D6C53 /* String + Ext.swift */,
 				0F70DF8A2B5C2F0200B1FCAA /* UITableView + Ext.swift */,
 				0F70DF8C2B5C2F1400B1FCAA /* UICollectionView + Ext.swift */,
@@ -913,6 +939,7 @@
 				0FB6BDD32B5D87CE009FD3D3 /* ResourceAllView.swift in Sources */,
 				F7A7FA482B20FA07003D6C53 /* RegisterVC.swift in Sources */,
 				F7A7FA3C2B20F1B8003D6C53 /* AppCoordinator.swift in Sources */,
+				0FC1E4E12B827AFC0067B70D /* LessonDetailVM.swift in Sources */,
 				F71DE0172B444F440033E757 /* ForgotPasswordCoordinator.swift in Sources */,
 				0FD8B0172B780FCB00E27230 /* LessonSchedulesView.swift in Sources */,
 				F75524F72B22492300D5D8A5 /* KeychainStore.swift in Sources */,
@@ -922,6 +949,7 @@
 				0F70DF992B5C588800B1FCAA /* ResourceBoughtView.swift in Sources */,
 				F72544C92B25000F0004F056 /* Strings.swift in Sources */,
 				F71DE0132B444ECF0033E757 /* ForgotPasswordVC.swift in Sources */,
+				0FC1E4E32B827D4B0067B70D /* Int + Ext.swift in Sources */,
 				F74E33352B2366B600F39BD2 /* WorkerFactory.swift in Sources */,
 				F789A75B2B1C7370006FFAE4 /* AppDelegate.swift in Sources */,
 				F7E4C64F2B1FC1EF004EB105 /* UIColor + Ext.swift in Sources */,
@@ -938,8 +966,11 @@
 				0FA08A232B652FE80073D5F4 /* SubjectDetailCell.swift in Sources */,
 				F7C6C68D2B3732A600D56800 /* OtpCoordinator.swift in Sources */,
 				F74E33332B2366AA00F39BD2 /* ViewModelFactory.swift in Sources */,
+				0F5AC56C2B7D31FD009E5885 /* UIApplication + Ext.swift in Sources */,
 				F7A7FA452B20F4B7003D6C53 /* LoginView.swift in Sources */,
 				F70246D62B46073D0077D2BE /* ChangePasswordViewModel.swift in Sources */,
+				0FAD2BA02B867DAC00E73106 /* LessonScheduleHeaderView.swift in Sources */,
+				0FC1E4DF2B822FB50067B70D /* LessonDetailTableCell.swift in Sources */,
 				0FD8B0122B78083C00E27230 /* MainView.swift in Sources */,
 				0FB6BDD52B5D8893009FD3D3 /* ResourceAllCell.swift in Sources */,
 				0FA08A2D2B6598190073D5F4 /* ResourcesResponse.swift in Sources */,
@@ -949,6 +980,7 @@
 				F7E4C6402B1FBF7C004EB105 /* Fonts.swift in Sources */,
 				F70246D42B46068C0077D2BE /* ChangePasswordView.swift in Sources */,
 				F72544C72B24FE640004F056 /* UIImage + Ext.swift in Sources */,
+				0FC1E4E52B827F920067B70D /* LessonDetailCollectionCell.swift in Sources */,
 				F71DE0152B444EE40033E757 /* ForgotPasswordView.swift in Sources */,
 				0FA08A312B659CBD0073D5F4 /* ResourcesService.swift in Sources */,
 				F70246D82B460C5F0077D2BE /* ChangePasswordCoordinator.swift in Sources */,

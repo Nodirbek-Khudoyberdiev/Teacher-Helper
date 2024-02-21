@@ -11,6 +11,8 @@ final class MainViewController: BaseViewController<MainView> {
     
     // MARK: Lifecycle
     
+    private let lessonScheduleVC = LessonSchedulesViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -22,7 +24,11 @@ final class MainViewController: BaseViewController<MainView> {
         view = mainView()
     }
     
-    // MARK: Actions
+}
+
+// MARK: Actions
+
+private extension MainViewController {
     
     @objc private func menuAction(){
         
@@ -31,18 +37,19 @@ final class MainViewController: BaseViewController<MainView> {
     @objc private func alertAction(){
         
     }
-    
 }
 
 // MARK: Setup
 
-extension MainViewController {
+private extension MainViewController {
     
-    private func setup(){
-        title = "Teacher Assistant"
+    func setup(){
+        navigationItem.title = "Teacher Assistant"
+        addChildVC(lessonScheduleVC)
+        mainView().contentStackView.addArrangedSubview(lessonScheduleVC.view)
     }
     
-    private func setupNavbarButtons(){
+    func setupNavbarButtons(){
         let menuButton = UIBarButtonItem(image: .menu, style: .done, target: self, action: #selector(menuAction))
         let alertButton = UIBarButtonItem(image: .bell, style: .done, target: self, action: #selector(alertAction))
         navigationItem.leftBarButtonItem = menuButton
