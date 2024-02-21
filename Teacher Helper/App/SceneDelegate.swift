@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         setNavBackButton()
+        setupNavbar()
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start(DependencyContainer.shared)
             .subscribe()
@@ -29,12 +30,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = .black
-        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 //        navigationBarAppearace.shadowImage = UIImage()
 //        navigationBarAppearace.setBackgroundImage(UIImage(), for: .default)
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+//        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+//        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
+
+    }
+    
+    private func setupNavbar(){
+        // MARK: Navigation bar appearance
+        let navigationBarAppearanceStandart = UINavigationBarAppearance()
+        navigationBarAppearanceStandart.configureWithOpaqueBackground()
+        navigationBarAppearanceStandart.backgroundColor = .lightGray
+        navigationBarAppearanceStandart.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        let navigationBarCompactAppearance = UINavigationBarAppearance()
+        navigationBarCompactAppearance.configureWithOpaqueBackground()
+        navigationBarCompactAppearance.backgroundColor = .clear
+        navigationBarCompactAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
+        
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearanceStandart
+        UINavigationBar.appearance().compactAppearance = navigationBarCompactAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarCompactAppearance
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

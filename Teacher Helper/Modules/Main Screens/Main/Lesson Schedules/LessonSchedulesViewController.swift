@@ -12,7 +12,7 @@ class LessonSchedulesViewController: BaseViewController<UIView> {
     private let lessonScheduleView = LessonSchedulesView()
     private let header = LessonScheduleHeaderView()
     
-    let vm: [LessonDetailVM] = [
+    private let vm: [LessonDetailVM] = [
         .init(lessonOrder: 1, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
         .init(lessonOrder: 2, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
         .init(lessonOrder: 3, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
@@ -20,6 +20,14 @@ class LessonSchedulesViewController: BaseViewController<UIView> {
         .init(lessonOrder: 5, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
         .init(lessonOrder: 6, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
         .init(lessonOrder: 7, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
+        .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б"),
         .init(lessonOrder: 8, lessonStartDate: "9.30", lessonEndDate: "10.30", lessonName: "Алгебра", lessonTheme: "Множества", className: "5Б")
     ]
     

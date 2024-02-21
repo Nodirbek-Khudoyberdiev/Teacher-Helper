@@ -35,10 +35,13 @@ private extension MainScreenTabbarController {
                 }
             }
         } else {
-            let appearance = UITabBarAppearance()
-            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appPrimaryColor]
-            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Gray._300]
-            tabBar.standardAppearance = appearance
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            tabBarAppearance.backgroundColor = .white
+            
+            tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appPrimaryColor]
+            tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.Gray._300]
+            tabBar.standardAppearance = tabBarAppearance
         }
     }
     

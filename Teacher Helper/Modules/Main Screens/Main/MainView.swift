@@ -34,10 +34,8 @@ private extension MainView {
     
     func setupConstrains() {
         contentStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.bottom.equalToSuperview()
             make.left.right.equalTo(superview ?? self)
-//            make.bottom.equalToSuperview()
-//            make.size.equalToSuperview()
         }
     }
 }
