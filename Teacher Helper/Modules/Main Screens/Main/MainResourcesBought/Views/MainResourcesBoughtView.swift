@@ -16,6 +16,7 @@ final class MainResourcesBoughtView: UITableView {
         showsVerticalScrollIndicator = false
         separatorStyle = .none
         clipsToBounds = false
+        isScrollEnabled = false
     }
     
     required init?(coder: NSCoder) {
