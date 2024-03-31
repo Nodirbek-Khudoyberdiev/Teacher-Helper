@@ -13,7 +13,9 @@ final class LessonSchedulesView: UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
+        isPagingEnabled = true
         backgroundColor = .clear
+        clipsToBounds = false
     }
     
     required init?(coder: NSCoder) {

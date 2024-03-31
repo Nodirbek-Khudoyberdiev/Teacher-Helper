@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol LessonScheduleHeaderDelegate: AnyObject {
+    func didTapLeftAction()
+    func didTapRightAction()
+}
+
 class LessonScheduleHeaderView: UIView {
+    
+    weak var delegate: LessonScheduleHeaderDelegate?
     
     enum LessonScheduleHeaderConstants {
         static let inset: CGFloat = 16
@@ -15,8 +22,7 @@ class LessonScheduleHeaderView: UIView {
     }
     
     private let dayLabel: UILabel = {
-        let label = UILabel(text: "Четверг, 16 Ноября",
-                            font: .inter(font: .semiBold, size: 18),
+        let label = UILabel(font: .inter(font: .semiBold, size: 18),
                             color: .Gray._500,
                             lines: 1,
                             alignment: .center)
@@ -25,15 +31,33 @@ class LessonScheduleHeaderView: UIView {
     
     private let leftArrow: UIButton = {
         let button = UIButton()
-        button.setImage(.chevronLeft, for: .normal)
+        button.setImage(.chevronLeft.withTintColor(.black), for: .normal)
         return button
     }()
     
     private let rightArrow: UIButton = {
         let button = UIButton()
-        button.setImage(.chevronRight, for: .normal)
+        button.setImage(.chevronRight.withTintColor(.black), for: .normal)
         return button
     }()
+    
+    var date: String = "" {
+        didSet {
+            dayLabel.text = date
+        }
+    }
+    
+    var leftActionEnabled: Bool = true {
+        didSet {
+            leftArrow.isEnabled = leftActionEnabled
+        }
+    }
+    
+    var rightActionEnabled: Bool = true {
+        didSet {
+            rightArrow.isEnabled = rightActionEnabled
+        }
+    }
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -46,6 +70,8 @@ class LessonScheduleHeaderView: UIView {
 private extension LessonScheduleHeaderView {
     
     func setup(){
+        leftArrow.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
+        rightArrow.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         addSubviews(leftArrow, dayLabel, rightArrow)
     }
     
@@ -70,5 +96,11 @@ private extension LessonScheduleHeaderView {
         })
     }
     
+    @objc private func didTapLeft(){
+        delegate?.didTapLeftAction()
+    }
     
+    @objc private func didTapRight(){
+        delegate?.didTapRightAction()
+    }
 }

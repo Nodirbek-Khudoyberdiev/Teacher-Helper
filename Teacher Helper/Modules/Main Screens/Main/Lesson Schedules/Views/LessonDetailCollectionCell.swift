@@ -61,7 +61,7 @@ private extension LessonDetailCollectionCell {
     func setupConstrains() {
         tableView.snp.makeConstraints({
             $0.top.bottom.equalToSuperview()
-            $0.left.right.equalToSuperview().inset(16)
+            $0.left.right.equalToSuperview()//.inset(16)
         })
     }
     

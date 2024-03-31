@@ -12,6 +12,7 @@ final class MainViewController: BaseViewController<MainView> {
     // MARK: Lifecycle
     
     private let lessonScheduleVC = LessonSchedulesViewController()
+    private let boughtResourcesVC = MainResourcesBoughtController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,9 @@ private extension MainViewController {
     
     func setup(){
         navigationItem.title = "Teacher Assistant"
+        addChildVC(boughtResourcesVC)
         addChildVC(lessonScheduleVC)
+        mainView().contentStackView.addArrangedSubview(boughtResourcesVC.view)
         mainView().contentStackView.addArrangedSubview(lessonScheduleVC.view)
     }
     
