@@ -36,6 +36,7 @@ class ResourceAllCell: BaseTableCell {
     }()
 
     func setup() {
+        backgroundColor = .white
         contentView.addSubview(containerView)
         containerView.addSubviews(subjectLabel, classesLabel, arrowRightImageView)
     }

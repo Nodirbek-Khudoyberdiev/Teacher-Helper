@@ -21,4 +21,5 @@ protocol ViewControllerFactory {
     func subjectDetailScreen() -> SubjectDetailVC
     func resourcesScreen() -> ResourcesScreenVC
     func resourceAllVC() -> ResourcesAllVC
+    func resourceBoughtVC() -> ResourceBoughtScreenVC
 }

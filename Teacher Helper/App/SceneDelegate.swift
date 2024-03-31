@@ -18,23 +18,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        setNavBackButton()
+        setupNavbar()
         appCoordinator = AppCoordinator(window: window!)
         appCoordinator.start(DependencyContainer.shared)
             .subscribe()
             .disposed(by: disposeBag)
     }
     
-    private func setNavBackButton(){
-        
+    private func setupNavbar(){
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = .black
-        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-//        navigationBarAppearace.shadowImage = UIImage()
-//        navigationBarAppearace.setBackgroundImage(UIImage(), for: .default)
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
+        // MARK: Navigation bar appearance
+        let navigationBarAppearanceStandart = UINavigationBarAppearance()
+        navigationBarAppearanceStandart.configureWithOpaqueBackground()
+        navigationBarAppearanceStandart.backgroundColor = .lightGray
+        navigationBarAppearanceStandart.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        let navigationBarCompactAppearance = UINavigationBarAppearance()
+        navigationBarCompactAppearance.configureWithOpaqueBackground()
+        navigationBarCompactAppearance.backgroundColor = .clear
+        navigationBarCompactAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.inter(font: .medium, size: 10)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.inter(font: .medium, size: 10)], for: .selected)
+        
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearanceStandart
+        UINavigationBar.appearance().compactAppearance = navigationBarCompactAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarCompactAppearance
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
